@@ -1,0 +1,78 @@
+body {
+  background: #e4e4e4;
+}
+
+h1 {
+  border: 0px solid white;
+  padding-bottom: 20px;
+  margin:  0 auto;
+}
+
+h3 {
+  font-size: 60px;
+}
+
+h4 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+  color: #666;
+  padding: 0px 0 0px 0;
+}
+.container {
+  padding-bottom: 20px;
+}
+
+
+
+.hero.homepage {
+  background-image: url(https://www.standard.co.uk/s3fs-public/styles/story_large/public/thumbnails/image/2017/03/31/10/model-market-street-food.jpg);
+  background-size: cover;
+  /* height: 650px; */
+
+
+}
+
+
+.title {
+  font-size: 90px;
+}
+
+.subtitle {
+  font-size: 25px;
+}
+
+.navbar {
+  background-color: #000;
+}
+
+.navbar-item {
+  color: #fff;
+}
+
+.container {
+  padding-top: 20px;
+}
+
+.purple {
+  color: #a368a4;
+}
+
+footer {
+  height: 20px;
+  border-top: 1px solid #ccc;
+  background: #fff;
+  padding: 5px;
+}
+
+footer p {
+  text-align: center;
+  font-size: 10px;
+  color: #666;
+}
+
+.error {
+  color: red;
+}

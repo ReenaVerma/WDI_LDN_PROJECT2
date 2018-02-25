@@ -1,0 +1,44 @@
+<div class="container animated fadeIn">
+  <%# sending POST/Create request to the page /cheeses %>
+  <form method="POST" action="/music/<%= song._id %>">
+
+    <%# REQUIRED FIELD %>
+    <%# THIS IS OUR _METHOD in BODY PARSER FUNCTION IN INDEX.JS %>
+    <input type="hidden" name="_method" value="PUT">
+
+
+    <div class="field">
+      <label class="label">Favourite Artist:</label>
+      <div class="control">
+        <input class="input" name="artist" type="text" placeholder="Artist" value="<%= song.artist %>" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Song:</label>
+      <div class="control">
+        <input class="input" name="song" type="text" placeholder="Song" value="<%= song.song %>" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Image</label>
+      <div class="control">
+        <input class="input" name="image" type="text" placeholder="Image" value="<%= song.image %>" required>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">YouTube Link:</label>
+      <div class="control">
+        <input class="input" name="youtube" type="text" placeholder="YouTube Link" value="<%= song.youtube %>" required>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Tasting Notes (380 chars max):</label>
+      <div class="control">
+        <textarea class="textarea" name="info" placeholder="Info (380 chars max)" maxlength="380"><%= song.info %></textarea>
+      </div>
+    </div>
+    <div class="control">
+      <button class="button is-primary">Submit</button>
+    </div>
+  </form>
+</div>

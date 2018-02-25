@@ -1,0 +1,33 @@
+<div class="container animated fadeIn">
+  <div class="columns">
+    <div class="column">
+      <figure class="image">
+        <img src="<%= popup.image %>" alt="<%= popup.image %>">
+      </figure>
+    </div>
+    <div class="column">
+      <h3><%= popup.title %></h3>
+      <p><%= popup.description %></p>
+      <a class="button is-medium is-primary is-outlined" href="<%= popup.type %>">YouTube Link</a>
+
+      <div class="columns is-gapless is-0 is-multiline">
+        <div class="column is-one-quarter">
+
+          <% if(locals.isAuthenticated) { %>
+          <a href="/music/<%= popup._id %>/edit" class="button is-primary is-pulled-left">Edit Pop-Up</a>
+          <% } %>
+
+        </div>
+        <div class="column is-one-fifth">
+
+          <% if(locals.isAuthenticated) { %>
+        <form method="POST" action="/music/<%= song._id %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="button is-danger">Delete</button>
+          <% } %>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
