@@ -29,4 +29,4 @@ const schema = new mongoose.Schema({
 
 // telling the model it should be called Song.
 // name of the model 'song' + schema
-module.exports = mongoose.model('Song', schema);
+module.exports = mongoose.model('Popup', schema);

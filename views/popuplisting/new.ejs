@@ -1,0 +1,66 @@
+<section class="hero is-small homepage hero-head animated fadeIn is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-white">new pop-up nearby?</h1>
+      <h2 class="subtitle has-text-white">add it here!</h2>
+    </div>
+  </div>
+</section>
+
+<div class="container animated fadeIn">
+  <%# sending POST/Create request to the page /cheeses %>
+  <form method="POST" action="/popuplisting">
+    <div class="field">
+      <label class="label">Pop-Up Name:</label>
+      <div class="control">
+        <input class="input" name="title" type="text" placeholder="Name" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">When:</label>
+      <div class="control">
+        <input class="input" name="when" type="text" placeholder="When" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Which area in London?:</label>
+      <div class="control">
+        <input class="input" name="where" type="text" placeholder="EG... Peckham" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Event type</label>
+      <div class="control">
+        <%# <input class="input" name="where" type="text" placeholder="EG... Peckham" required minlength="2"> %>
+        <div class="select">
+          <select name="type">
+            <option value="Food and drink">Food and drink</option>
+            <option value="Art">Art</option>
+            <option value="Music">Music</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Image upload</label>
+      <div class="control">
+        <input class="input" name="image" type="text" placeholder="Improve your listings page with an image!" required pattern="https?://.+">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Address:</label>
+      <div class="control">
+        <input class="input" name="address" type="text" placeholder="Full address incl. post code" required required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">A short blurb about the event:</label>
+      <div class="control">
+        <textarea class="textarea" name="description" placeholder="(380 chars max)" maxlength="380"></textarea>
+      </div>
+    </div>
+    <div class="control">
+      <button class="button is-primary">Submit</button>
+    </div>
+  </form>
+</div>

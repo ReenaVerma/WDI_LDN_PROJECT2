@@ -1,6 +1,6 @@
 // CREATING EXPRESS ROUTER CONNECTION
 const router = require('express').Router();
-const songs = require('../controllers/popups');
+const popups = require('../controllers/popups');
 const registrations = require('../controllers/registrations');
 const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
@@ -9,21 +9,21 @@ const secureRoute = require('../lib/secureRoute');
 router.get('/', (req, res) => res.render('pages/home'));
 
 // NEW RESTFUL
-router.get('/music/new', secureRoute, songs.new);
+router.get('/popuplisting/new', secureRoute, popups.new);
 
 // INDEX AND CREATE RESTFUL
-router.route('/music')
-  .get(songs.index)
-  .post(songs.create);
+router.route('/popuplisting')
+  .get(popups.index)
+  .post(popups.create);
 
 // SHOW, UPDATE AND DELETE RESTFUL
-router.route('/music/:id')
-  .get(songs.show)
-  .put(secureRoute, songs.update)
-  .delete(secureRoute, songs.delete);
+router.route('/popuplisting/:id')
+  .get(popups.show)
+  .put(secureRoute, popups.update)
+  .delete(secureRoute, popups.delete);
 
 // EDIT RESTFUL
-router.get('/music/:id/edit', secureRoute, songs.edit);
+router.get('/popuplisting/:id/edit', secureRoute, popups.edit);
 
 // REGISTRATION NEW AND CREATE
 router.route('/register')

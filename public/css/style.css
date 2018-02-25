@@ -60,6 +60,16 @@ p {
   color: #a368a4;
 }
 
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}
+
+.fa-star {
+  color: #e5d73b;
+}
+
 footer {
   height: 20px;
   border-top: 1px solid #ccc;

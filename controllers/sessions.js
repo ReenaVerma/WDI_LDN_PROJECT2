@@ -15,7 +15,7 @@ function createRoute(req, res, next) {
       }
       req.session.userId = user._id;
       // now cookies is setup, store the logged in user ID, into the session cookie
-      res.redirect('/music');
+      res.redirect('/popuplisting');
     })
     .catch(next);
 }

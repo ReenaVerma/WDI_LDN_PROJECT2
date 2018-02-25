@@ -1,10 +1,10 @@
-<nav class="navbar is-black">
+<nav class="navbar is-fixed-top is-black">
   <div id="mobile-menu" class="navbar-menu">
     <div class="navbar-end ">
       <a class="navbar-item" href="/">Home</a>
-      <a class="navbar-item" href="/music">Your Pop-Ups</a>
+      <a class="navbar-item" href="/popuplisting">Recent Listings</a>
       <% if(locals.isAuthenticated) { %>
-      <a class="navbar-item" href="/music/new">Add New Tunes!</a>
+      <a class="navbar-item" href="/popuplisting/new">List a New Pop-Up</a>
       <a class="navbar-item" href="/logout">Logout</a>
       <% } else { %>
       <a class="navbar-item" href="/register">Register</a>

@@ -1,0 +1,77 @@
+
+<div class="container animated fadeIn">
+
+  <%# ROW ONE %>
+  <div class="columns">
+    <div class="column">
+      <h3><%= popup.title %></h3>
+      <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p>12 reviews</p>
+      <h4>Added by user ABC</h4>
+      <p><%= popup.description %></p>
+    </div>
+
+    <div class="column">
+      <figure id="map">
+
+      </figure>
+    </div>
+  </div>
+
+  <%# ROW 2 %>
+
+
+  <div class="columns has-text-centered">
+    <div class="column"><i class="fas fa-calendar-alt fa-3x"></i><h4>When?</h4><%= popup.when %></div>
+    <div class="column"><i class="fas fa-building fa-3x"></i><h4>Where?</h4><%= popup.where %></div>
+    <div class="column"><i class="fas fa-glass-martini fa-3x"></i><h4>Type?</h4><%= popup.type %></div>
+    <div class="column"><i class="fas fa-map-marker fa-3x"></i><h4>Address?</h4><%= popup.address %></div>
+  </div>
+
+  <%# ROW 3 = User Genereated Images %>
+
+  <div class="columns">
+    <div class="column">
+      <img src="<%= popup.image %>" alt="<%= popup.image %>">
+
+      <a class="button is-large has-text-centered is-primary" id="upload">
+        <span class="icon is-medium"><i class="fab fa-github"></i></span>
+        <span>Upload your photos</span>
+      </a>
+
+    </div>
+  </div>
+
+  <%# ROW 4 = Return uploaded images %>
+
+  <div class="columns">
+    <div class="column">
+      
+    </div>
+  </div>
+
+
+    <%# ROW 4 = User Comments %>
+
+  <div class="columns">
+    <div class="column">
+      <p>Great Service!</p>
+    </div>
+    <div class="columns is-gapless is-0 is-multiline">
+      <div class="column is-one-quarter">
+        <% if(locals.isAuthenticated) { %>
+        <a href="/music/<%= popup._id %>/edit" class="button is-primary is-pulled-left">Edit Pop-Up</a>
+        <% } %>
+      </div>
+      <div class="column is-one-fifth">
+        <% if(locals.isAuthenticated) { %>
+      <form method="POST" action="/popuplisting/<%= popup._id %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="button is-danger">Delete</button>
+        <% } %>
+      </form>
+    </div>
+    </div>
+  </div>
+
+
+</div>

@@ -7,19 +7,19 @@ function indexRoute(req, res) {
   // use models/song to get data from database
   Popup.find()
     // pass data into views/music/index
-    .then(music => res.render('music/index', { music: music }));
+    .then(popup => res.render('popuplisting/index', { popup: popup }));
 }
 
 // NEW RESTFUL
 function newRoute (req, res) {
-  res.render('music/new');
+  res.render('popuplisting/new');
 }
 
 // CREATE RESTFUL
 function createRoute(req, res, next) {
   console.log(req.body);
   Popup.create(req.body)
-    .then(() => res.redirect('/music'))
+    .then(() => res.redirect('/popuplisting'))
     .catch(next);
 }
 
@@ -35,7 +35,7 @@ function showRoute(req, res, next) {
   Popup.findById(req.params.id)
     .then(popup => {
       if(!popup) return res.render('pages/404');
-      res.render('music/show', { popup });
+      res.render('popuplisting/show', { popup });
     })
     .catch(next);
 }
@@ -44,7 +44,7 @@ function showRoute(req, res, next) {
 // FOR PREPOPULATION OCCURS HERE
 function editRoute(req, res) {
   Popup.findById(req.params.id)
-    .then(popup => res.render('music/edit', { popup }));
+    .then(popup => res.render('popuplisting/edit', { popup }));
 }
 
 // UPDATE RESTFUL
@@ -58,7 +58,7 @@ function updateRoute(req, res) {
     // save
     .then(popup => popup.save())
     // and then redirect to the specifc id page
-    .then(() => res.redirect(`/music/${req.params.id}`));
+    .then(() => res.redirect(`/popuplisting/${req.params.id}`));
 }
 
 
@@ -66,7 +66,7 @@ function updateRoute(req, res) {
 function deleteRoute(req, res) {
   Popup.findById(req.params.id)
     .then(popup => popup.remove())
-    .then(() => res.redirect('/music'));
+    .then(() => res.redirect('/popuplisting'));
 }
 
 

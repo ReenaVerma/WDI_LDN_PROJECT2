@@ -14,7 +14,7 @@ function createRoute(req, res, next) {
   User.create(req.body)
     .then((user) => {
       console.log(user);
-      res.redirect('/music');
+      res.redirect('/popuplisting');
     })
     .catch(next);
 }
