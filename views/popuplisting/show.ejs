@@ -1,19 +1,59 @@
 
-<div class="container animated fadeIn">
+<%# <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+
+var geocoder = new google.maps.Geocoder();
+var address = "new york";
+
+geocoder.geocode( { 'address': address}, function(results, status) {
+
+  if (status == google.maps.GeocoderStatus.OK) {
+    var latitude = results[0].geometry.location.lat();
+    var longitude = results[0].geometry.location.lng();
+    alert(latitude);
+  }
+});
+</script> %>
+
+<script>
+function initialize(){
+      console.log(<%= popup.lat %>);
+     var myLatlng = new google.maps.LatLng(<%= popup.lat %>,<%= popup.lng %>);
+     var myOptions = {
+         zoom: 17,
+         center: myLatlng,
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+         }
+      map = new google.maps.Map(document.getElementById("map"), myOptions);
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+      title:"Fast marker"
+     });
+}
+
+google.maps.event.addDomListener(window,'load', initialize);
+</script>
+
+<div class="container">
 
   <%# ROW ONE %>
   <div class="columns">
     <div class="column">
       <h3><%= popup.title %></h3>
-      <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p>12 reviews</p>
+      <%# <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p>12 reviews</p> %>
+      <div class="rw-ui-container"></div>
+      <%# <div class="rw-ui-container" data-title="my awesome rating"></div> %>
       <h4>Added by user ABC</h4>
       <p><%= popup.description %></p>
+      lat:<%= popup.lat %>
+      long:<%= popup.lng %>
     </div>
 
     <div class="column">
-      <figure id="map">
+      <div id="map">
 
-      </figure>
+      </div>
     </div>
   </div>
 
@@ -21,10 +61,10 @@
 
 
   <div class="columns has-text-centered">
-    <div class="column"><i class="fas fa-calendar-alt fa-3x"></i><h4>When?</h4><%= popup.when %></div>
-    <div class="column"><i class="fas fa-building fa-3x"></i><h4>Where?</h4><%= popup.where %></div>
-    <div class="column"><i class="fas fa-glass-martini fa-3x"></i><h4>Type?</h4><%= popup.type %></div>
-    <div class="column"><i class="fas fa-map-marker fa-3x"></i><h4>Address?</h4><%= popup.address %></div>
+    <div class="column"><i class="fas fa-calendar-alt fa-3x"></i><h4>When</h4><%= popup.when %></div>
+    <div class="column"><i class="fas fa-building fa-3x"></i><h4>Where</h4><%= popup.where %></div>
+    <div class="column"><i class="fas fa-glass-martini fa-3x"></i><h4>Type</h4><%= popup.type %></div>
+    <div class="column"><i class="fas fa-map-marker fa-3x"></i><h4>Address</h4><span id="address"><%= popup.loc %></span></div>
   </div>
 
   <%# ROW 3 = User Genereated Images %>
@@ -45,7 +85,7 @@
 
   <div class="columns">
     <div class="column">
-      
+
     </div>
   </div>
 
@@ -72,6 +112,5 @@
     </div>
     </div>
   </div>
-
 
 </div>

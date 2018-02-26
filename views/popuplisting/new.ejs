@@ -1,4 +1,4 @@
-<section class="hero is-small homepage hero-head animated fadeIn is-bold">
+<section class="hero is-small homepage hero-head is-bold">
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title has-text-white">new pop-up nearby?</h1>
@@ -7,7 +7,7 @@
   </div>
 </section>
 
-<div class="container animated fadeIn">
+<div class="container">
   <%# sending POST/Create request to the page /cheeses %>
   <form method="POST" action="/popuplisting">
     <div class="field">
@@ -44,15 +44,26 @@
     <div class="field">
       <label class="label">Image upload</label>
       <div class="control">
-        <input class="input" name="image" type="text" placeholder="Improve your listings page with an image!" required pattern="https?://.+">
+        <input class="input" name="image" type="text" placeholder="Improve your listings page with an image!"  pattern="https?://.+">
       </div>
     </div>
-    <div class="field">
+
+    <div class="field" id="locationField">
+      <input type="hidden" name="lat" />
+      <input type="hidden" name="lng" />
       <label class="label">Address:</label>
       <div class="control">
-        <input class="input" name="address" type="text" placeholder="Full address incl. post code" required required minlength="2">
+        <input id="autocomplete" name="loc" class="input" type="text" placeholder="" required>
       </div>
     </div>
+
+    <%# <div id="locationField" class="field">
+      <input type="hidden" name="lat" />
+      <input type="hidden" name="lng" />
+      <label class="label" name="address" type="text">What's the address?:</label>
+      <input id="autocomplete" placeholder="Enter your address" type="text" />
+    </div> %>
+
     <div class="field">
       <label class="label">A short blurb about the event:</label>
       <div class="control">
@@ -64,3 +75,5 @@
     </div>
   </form>
 </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C7HRroI6BaALKHa6EHMc_BDYLIB5kUA&libraries=places&callback=initAutocomplete" async defer></script>
