@@ -25,6 +25,13 @@ router.route('/popuplisting/:id')
 // EDIT RESTFUL
 router.get('/popuplisting/:id/edit', secureRoute, popups.edit);
 
+// CREATE COMMENTS
+router.route('/popuplisting/:id/comments')
+  .post(secureRoute, popups.commentsCreate);
+
+router.route('/popuplisting/:id/comments/:commentId')
+  .delete(secureRoute, popups.commentsDelete);
+
 // REGISTRATION NEW AND CREATE
 router.route('/register')
   .get(registrations.new)

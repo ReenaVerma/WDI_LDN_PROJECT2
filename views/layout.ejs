@@ -14,56 +14,9 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C7HRroI6BaALKHa6EHMc_BDYLIB5kUA">
     </script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C7HRroI6BaALKHa6EHMc_BDYLIB5kUA"></script>
-    <!-- <script src="https://static.filestackapi.com/v3/filestack.js"></script> -->
+    <script src="https://static.filestackapi.com/v3/filestack.js"></script>
 
 
-
-     
-
-
-
-
-    <!-- <script>
-      var geocoder;
-      var map;
-      var mapOptions = {
-          zoom: 17,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-      var marker;
-      function initialize() {
-        geocoder = new google.maps.Geocoder();
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        console.log('hello1');
-        codeAddress();
-
-      }
-      initialize();
-      function codeAddress() {
-        var address = `${popup.lng}` + ${popup.lat};
-        console.log('hello2');
-        geocoder.geocode( { 'address': address}, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            if(marker)
-              marker.setMap(null);
-            marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location,
-                draggable: true
-            });
-            google.maps.event.addListener(marker, "dragend", function() {
-              document.getElementById('lat').value = marker.getPosition().lat();
-              document.getElementById('lng').value = marker.getPosition().lng();
-            });
-            document.getElementById('lat').value = marker.getPosition().lat();
-            document.getElementById('lng').value = marker.getPosition().lng();
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-    </script> -->
 
 
     <script type="text/javascript">(function(d, t, e, m){
@@ -105,6 +58,12 @@
   </head>
   <body>
     <%- include ./partials/_navbar %>
+
+    <% for (const type in messages) { %>
+      <div class="notification is-<%= type %>"><%= messages[type] %></div>
+    <% } %>
+
+
     <%- body -%>
   </body>
   <footer><p>Reena Verma</p></footer>

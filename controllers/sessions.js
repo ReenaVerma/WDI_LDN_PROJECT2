@@ -13,8 +13,12 @@ function createRoute(req, res, next) {
       if (!user || !user.validatePassword(req.body.password)) {
         return res.redirect('/login');
       }
+
+      // now cookies is setup, write this
+      // store the logged in users ID into the session cookie
       req.session.userId = user._id;
-      // now cookies is setup, store the logged in user ID, into the session cookie
+
+      req.flash('success', `Welcome back good lookin' ${user.username}`);
       res.redirect('/popuplisting');
     })
     .catch(next);

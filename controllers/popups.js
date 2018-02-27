@@ -23,16 +23,13 @@ function createRoute(req, res, next) {
     .catch(next);
 }
 
-// // SHOW RESTFUL
-// function showRoute(req, res) {
-//   Song.findById(req.params.id, (err, song) => {
-//     res.render('music/show', { song });
-//   });
-// }
 
 // SHOW RESTFUL
 function showRoute(req, res, next) {
   Popup.findById(req.params.id)
+    .populate('comments.user')
+    // populate gets the record
+    // inside the comments area, find all the users and populate commentSchema
     .then(popup => {
       if(!popup) return res.render('pages/404');
       res.render('popuplisting/show', { popup });
@@ -70,6 +67,58 @@ function deleteRoute(req, res) {
 }
 
 
+// CREATE FUNCTION FOR COMMENT
+function commentsCreateRoute(req, res, next) {
+  req.body.user = req.currentUser;
+  console.log(req.body);
+
+  // find the popup by ID
+  Popup.findById(req.params.id)
+    .then(popup => {
+      // push comment into the the body area of the popup page
+      popup.comments.push(req.body);
+      req.flash('success', 'Comment added!');
+      return popup.save();
+
+    })
+    .then(popup => {
+      console.log(popup);
+      res.redirect(`/popuplisting/${popup._id}`);
+    })
+    .catch(next); //catch any errors
+}
+
+
+
+// DELETE FUNCTION FOR COMMENTS
+// function commentsDeleteRoute(req, res, next) {
+//   Popup.findById(req.params.id)
+//     .then(popup => {
+//       const comment = popup.comments.id(req.params.commentId);
+//       comment.remove();
+//       return popup.save();
+//     })
+//     .then(popup => res.redirect(`/popuplisting/${popup._id}`))
+//     .catch(next);
+// }
+
+function commentsDeleteRoute(req, res, next) {
+  Popup.findById(req.params.id)
+    .then(popup => {
+      // push req.body/conten for the form into the comments area
+      const comment = popup.comments.id(req.params.commentId);
+      comment.remove();
+      return popup.save();
+    })
+    .then(popup => res.redirect(`/popuplisting/${popup._id}`))
+    .catch(next);  //any problems send to error handler
+}
+
+
+
+
+
+
 module.exports = {
   index: indexRoute,
   new: newRoute,
@@ -77,6 +126,8 @@ module.exports = {
   show: showRoute,
   edit: editRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  commentsCreate: commentsCreateRoute,
+  commentsDelete: commentsDeleteRoute
   // show: showRoute
 };

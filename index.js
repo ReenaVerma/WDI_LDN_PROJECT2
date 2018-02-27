@@ -7,10 +7,9 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const router = require('./config/router');
 const session = require('express-session');
+const flash = require('express-flash');
 const userAuth = require('./lib/userAuth');
-const googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyC8C7HRroI6BaALKHa6EHMc_BDYLIB5kUA'
-});
+
 // const filestack = filestack.init(AzIEvsoFPTqyx3Hl6QM08z);
 
 
@@ -64,19 +63,13 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// googleMapsClient.geocode({
-//   address: '1600 Amphitheatre Parkway, Mountain View, CA'
-// }, function(err, response) {
-//   if (!err) {
-//     console.log(response.json.results);
-//   }
-// });
+
+// setup flash messages must be AFTER express-session
+app.use(flash());
+
 
 // CHECKS REQUEST BEFORE SENDING ON
 // ON THE WAY TO THE ROUTER, WE PICK UP THIS INFORMATION
-
-
-
 app.use(userAuth);
 
 // CONNECT ROUTER FILE

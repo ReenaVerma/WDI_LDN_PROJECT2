@@ -8,33 +8,49 @@
 
 
     <div class="field">
-      <label class="label">Favourite Artist:</label>
+      <label class="label">Pop-Up Name:</label>
       <div class="control">
-        <input class="input" name="artist" type="text" placeholder="Artist" value="<%= song.artist %>" required minlength="2">
+        <input class="input" name="title" type="text" placeholder="Name" required minlength="2" value="<%= popup.title %>">
       </div>
     </div>
     <div class="field">
-      <label class="label">Song:</label>
+      <label class="label">When:</label>
       <div class="control">
-        <input class="input" name="song" type="text" placeholder="Song" value="<%= song.song %>" required minlength="2">
+        <input class="input" name="when" type="text" placeholder="When" required minlength="2" value="<%= popup.when %>">
       </div>
     </div>
     <div class="field">
-      <label class="label">Image</label>
+      <label class="label">Which area in London?:</label>
       <div class="control">
-        <input class="input" name="image" type="text" placeholder="Image" value="<%= song.image %>" required>
+        <input class="input" name="where" type="text" required minlength="2" value="<%= popup.where %>">
       </div>
     </div>
     <div class="field">
-      <label class="label">YouTube Link:</label>
+      <label class="label">Event type</label>
       <div class="control">
-        <input class="input" name="youtube" type="text" placeholder="YouTube Link" value="<%= song.youtube %>" required>
+        <div class="select">
+          <select name="type">
+            <option value="Food and drink">Food and drink</option>
+            <option value="Art">Art</option>
+            <option value="Music">Music</option>
+          </select>
+        </div>
       </div>
     </div>
-    <div class="field">
-      <label class="label">Tasting Notes (380 chars max):</label>
+
+    <div class="field" id="locationField">
+      <input type="hidden" name="lat">
+      <input type="hidden" name="lng">
+      <label class="label">Address:</label>
       <div class="control">
-        <textarea class="textarea" name="info" placeholder="Info (380 chars max)" maxlength="380"><%= song.info %></textarea>
+        <input id="autocomplete" name="loc" class="input" type="text" required value="<%= popup.loc %>">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">A short blurb about the event:</label>
+      <div class="control">
+        <textarea class="textarea" name="description" placeholder="(380 chars max)" maxlength="380" value=""><%= popup.description %></textarea>
       </div>
     </div>
     <div class="control">
@@ -42,3 +58,4 @@
     </div>
   </form>
 </div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C7HRroI6BaALKHa6EHMc_BDYLIB5kUA&libraries=places&callback=initAutocomplete" async defer></script>

@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
-  content: { type: String }
+  content: { type: String },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' }
+// using an id to refer to a user
+// looking for objectid data, then we say we want a USER object
 });
 
+commentSchema.methods.isOwnedBy = function(user) {
+  // is this comment owned by this user?
+  return this.user && user._id.equals(this.user._id);
+  // if logged in user id, matches the object id
+};
 
-// const locationSchema = new mongoose.Schema({
-//   name: String,
-//   loc: {
-//     type: [Number],  // [<longitude>, <latitude>]
-//     index: '2d'      // create the geospatial index
-//   }
-// });
 // data template and schema expectations
 const schema = new mongoose.Schema({
   image: { type: String },

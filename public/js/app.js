@@ -3,23 +3,47 @@
 $(() => {
 
   $('form').validate();
+
+  // FILESTACK UPLOAD FUNCTION
+
+
+  const button = document.getElementById('upload');
+  const gallery = document.getElementById('gallery');
+
+  let transformURL = 'https://cdn.filestack.com/watermark=file:';
+  let fileUrl;
+
+
+
+  button.addEventListener('click', () => {
+    const client = filestack.init('AzIEvsoFPTqyx3Hl6QM08z');
+    client.pick({
+      fromSources:["local_file_system","imagesearch","facebook","instagram","webcam"],
+      accept: 'image/*',
+      maxFiles: 1,
+      transformations: {
+        crop: { force: true },
+        crop: { aspectRatio:1.333 }
+      }
+    }).then(function(result) {
+      let fileUrl = result.filesUploaded[0].url;
+      console.log(fileUrl);
+      gallery.setAttribute('src', fileUrl);
+
+    });
+  });
+
+
+
+  // jquery loader
 });
 
+
+
+
+
+
 //GOOGLE LOCATION AUTOCOMPLETE
-
-
-
-//FILESTACK UPLOAD FUNCTION
-// const button = document.getElementById('upload');
-//
-// button.addEventListener('click', (e) => {
-//   const client = filestack.init('AzIEvsoFPTqyx3Hl6QM08z');
-//   client.pick();
-//
-// });
-
-
-
 
 var placeSearch, autocomplete, geocoder;
 
