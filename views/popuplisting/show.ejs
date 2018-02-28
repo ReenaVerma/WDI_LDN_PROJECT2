@@ -17,100 +17,125 @@ function initialize(){
 }
 
 google.maps.event.addDomListener(window,'load', initialize);
-
-
-
 </script>
 
 
+<%# HEADER IMAGE %>
+<section class="hero is-medium index hero-head animated fadeIn is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-white"><%= popup.title %></h1>
+    </div>
+  </div>
+</section>
 
 
 
+<%# ROW OF HELPFUL ICONS/INFO %>
 <div class="container">
 
-  <%# ROW ONE %>
+  <div class="columns has-text-centered white">
+    <div class="column"><i class="fas fa-calendar-alt fa-3x"></i><h4>date</h4><%= popup.date %></div>
+    <div class="column"><i class="fas fa-pound-sign fa-3x"></i><h4>cost</h4></div>
+    <div class="column"><i class="fas fa-glass-martini fa-3x"></i><h4>type</h4><%= popup.type %></div>
+    <div class="column"><i class="fas fa-map-marker fa-3x"></i><h4>address</h4><span id="address"><%= popup.loc %></span></div>
+
+  </div>
+
+
+
+  <%# INTRO AND GOOGLE MAPS ROW %>
   <div class="columns">
     <div class="column">
-      <h3><%= popup.title %></h3>
-      <%# <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p>12 reviews</p> %>
-      <div class="rw-ui-container"></div>
-      <%# <div class="rw-ui-container" data-title="my awesome rating"></div> %>
-      <h4>Added by user ABC</h4>
+      <h3>"<%= popup.twoWords %>"</h3>
+      <h4><em>added by user abc</em></h4>
+      <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p id="reviewsCount">12 reviews</p>
       <p><%= popup.description %></p>
-      lat:<%= popup.lat %>
-      long:<%= popup.lng %>
     </div>
 
     <div class="column">
-      <div id="map">
-
-      </div>
+      <div id="map"></div>
     </div>
   </div>
 
-  <%# ROW 2 %>
+
+  <% if(locals.isAuthenticated) { %>
+
+    <div class="columns is-gapless is-0 is-multiline">
+        <div class="column">
+          <a href="/popuplisting/<%= popup._id %>/edit" class="button is-primary is-pulled-left">Edit Pop-Up</a>
+        </div>
+
+        <div class="column">
+          <form method="POST" action="/popuplisting/<%= popup._id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="button is-danger">Delete</button>
+          </form>
+        </div>
+    </div>
+
+  <% } %>
 
 
-  <div class="columns has-text-centered">
-    <div class="column"><i class="fas fa-calendar-alt fa-3x"></i><h4>When</h4><%= popup.when %></div>
-    <div class="column"><i class="fas fa-building fa-3x"></i><h4>Where</h4><%= popup.where %></div>
-    <div class="column"><i class="fas fa-glass-martini fa-3x"></i><h4>Type</h4><%= popup.type %></div>
-    <div class="column"><i class="fas fa-map-marker fa-3x"></i><h4>Address</h4><span id="address"><%= popup.loc %></span></div>
-  </div>
-
-  <%# ROW 3 = User Genereated Images %>
-
+<%# RANDOM IMAGE INSERT %>
   <div class="columns">
-    <div class="column">
+    <div class="column has-text-centered">
       <img src="<%= popup.image %>" alt="<%= popup.image %>">
-
-      <a class="button is-large has-text-centered is-primary" id="upload">
-        <span class="icon is-medium"><i class="fab fa-github"></i></span>
-        <span>Upload your photos</span>
-      </a>
-
     </div>
   </div>
 
-  <%# ROW 4 = Return uploaded images %>
 
+  <%# LOGGED IN FUNCTION - UPLOAD AN IMAGE %>
+  <% if(locals.isAuthenticated) { %>
   <div class="columns">
     <div class="column">
-      <img id="gallery" src="" />
+
+    <form method="POST" action="/popuplisting/<%= popup._id %>/gallery">
+      <label class="label">Image</label>
+      <div>
+        <input id='imageUpload' type="hidden" name="galleryImage" required />
+          <a class="button is-large has-text-centered is-primary" id="upload">
+            <span class="icon is-medium"><i class="fab fa-github"></i></span>
+            <span>Upload your photos</span>
+          </a>
+        <button class="button is-primary">Submit</button>
+      </div>
+    </form>
     </div>
+    </div>
+
+  <% } %>
+
+
+  <div class="columns">
+      <div class="column">
+        <% if(popup.galleryImage[0]){ %>
+          <img src="<%= popup.galleryImage[0].galleryImage %>" />
+        <% } %>
   </div>
+</div>
+
 
 
     <%# ROW 4 = User Comments %>
 
   <div class="columns">
-
     <div class="column">
 
 
 
-  <% if(locals.isAuthenticated) { %>
-    <div class="columns is-gapless is-0 is-multiline">
-      <div class="column">
-        <a href="/popuplisting/<%= popup._id %>/edit" class="button is-primary is-pulled-left">Edit Pop-Up</a>
-      </div>
 
-      <div class="column">
-      <form method="POST" action="/popuplisting/<%= popup._id %>">
-        <input type="hidden" name="_method" value="DELETE">
-        <button class="button is-danger">Delete</button>
-      </form>
-      </div>
-    </div>
+    <% if(locals.isAuthenticated) { %>
 
-    <hr />
+    <div class="columns">
+      <div class="column">
+      <hr />
 
         <ul class="comments">
           <% popup.comments.forEach(comment => { %>
             <li>
             <div class="box">
-
-            <% if (comment.isOwnedBy(locals.currentUser)) { %>
+              <% if (comment.isOwnedBy(locals.currentUser)) { %>
               <form class="delete" method="POST" action="/popuplisting/<%= popup._id %>/comments/<%= popup._id %>">
                 <input type="hidden" name="_method" value="DELETE">
                 <button class="delete">x</button>
@@ -125,25 +150,58 @@ google.maps.event.addDomListener(window,'load', initialize);
                 </div>
                 <div class="media-content">
                   <div class="content">
-                    <p>
-                      <%= comment.content %>
-                    </p>
+                  <p><%= comment.rating %> Stars!</p>
+                    <p><%= comment.content %></p>
                       <% if(comment.user) { %>
                         <strong><%= comment.user.username %></strong>
                       <% } %>
-
                   </div>
                 </div>
               </article>
-              </div>
+            </div>
             </li>
-          <% }) %>
         </ul>
 
-        <form method="POST" action="/popuplisting/<%= popup._id %>/comments">
-        <textarea class="textarea" name="content"></textarea>
-        <button class="button is-primary">Submit</button>
-        </form>
+        </div>
+        </div>
+
+    <% }) %>
+
+    <form method="POST" action="/popuplisting/<%= popup._id %>/comments">
+
+
+      <label class = "full" for="star5" title="Awesome - 5 stars">
+      <input type="radio" id="star5" name="rating" value="5" />
+      <i class="fa fa-star"></i>
+      </label>
+
+      <label class = "full" for="star4" title="Pretty good - 4 stars">
+      <input type="radio" id="star4" name="rating" value="4" />
+      <i class="fa fa-star"></i>
+      </label>
+
+
+      <label class = "full" for="star3" title="Meh - 3 stars">
+      <input type="radio" id="star3" name="rating" value="3" />
+      <i class="fa fa-star"></i>
+      </label>
+
+      <label class = "full" for="star2" title="Kinda bad - 2 stars">
+      <input type="radio" id="star2" name="rating" value="2" />
+      <i class="fa fa-star"></i>
+      </label>
+
+      <label class = "full" for="star1" title="Sucks big time - 1 star">
+      <input type="radio" id="star1" name="rating" value="1" />
+      <i class="fa fa-star"></i>
+      </label>
+
+
+      <textarea class="textarea" name="content"></textarea>
+
+      <button class="button is-primary">Submit</button>
+
+    </form>
 
   <% } %>
     </div>

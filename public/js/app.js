@@ -4,23 +4,31 @@ $(() => {
 
   $('form').validate();
 
+
+  const $ratingValue = $('.ratingValue');
+  const $stars = $('[name=rating]');
+
+  $stars.change(function(e) {
+    $ratingValue.val($(e.target).val());
+  });
+
   // FILESTACK UPLOAD FUNCTION
 
 
   const button = document.getElementById('upload');
   const gallery = document.getElementById('gallery');
+  const input = document.getElementById('imageUpload');
 
   let transformURL = 'https://cdn.filestack.com/watermark=file:';
-  let fileUrl;
 
 
 
-  button.addEventListener('click', () => {
+  if (button) button.addEventListener('click', () => {
     const client = filestack.init('AzIEvsoFPTqyx3Hl6QM08z');
     client.pick({
-      fromSources:["local_file_system","imagesearch","facebook","instagram","webcam"],
+      fromSources:['local_file_system','imagesearch','facebook','instagram','webcam'],
       accept: 'image/*',
-      maxFiles: 1,
+      maxFiles: 5,
       transformations: {
         crop: { force: true },
         crop: { aspectRatio:1.333 }
@@ -28,9 +36,64 @@ $(() => {
     }).then(function(result) {
       let fileUrl = result.filesUploaded[0].url;
       console.log(fileUrl);
-      gallery.setAttribute('src', fileUrl);
+      // gallery.setAttribute('src', fileUrl);
+      input.value = fileUrl;
+      console.log(input.value);
+
 
     });
+  });
+
+
+  // USER RATINGS
+
+  const reviewsCount = document.getElementById('reviewsCount');
+  const userRating = document.getElementById('userRating');
+
+  const star5 = document.getElementById('star5');
+  const star4 = document.getElementById('star4');
+  const star3 = document.getElementById('star3');
+  const star2 = document.getElementById('star2');
+  const star1 = document.getElementById('star1');
+
+  let rating = 0;
+
+  function upCount() {
+    console.log('clicked ' + rating + 'times');
+    rating++;
+    // averageCount = rating;
+    console.log('incremented');
+    reviewsCount.innerHTML = rating + ' ratings!';
+    // console.log(averageCount);
+    // total value clicked divide by rating
+    // console.log(values);
+    //
+    // sum + rating/ ratings.length;
+  }
+
+  // 5 STARS
+  star5.addEventListener('click', () => {
+    upCount();
+  });
+
+  // 4 STARS
+  star4.addEventListener('click', () => {
+    upCount();
+  });
+
+  // 3 STARS
+  star3.addEventListener('click', () => {
+    upCount();
+  });
+
+  // 2 STARS
+  star2.addEventListener('click', () => {
+    upCount();
+  });
+
+  // 1 STARS
+  star1.addEventListener('click', () => {
+    upCount();
   });
 
 
@@ -69,6 +132,7 @@ geocoder.geocode( { 'address': address}, function(results, status) {
 function fillInAddress() {
   var place = autocomplete.getPlace();
   console.log(place);
+  console.log(place.photos[0].getUrl);
   const lat = document.querySelector('[name=lat]');
   const lng = document.querySelector('[name=lng]');
   const location = place.geometry.location.toJSON();
@@ -78,150 +142,3 @@ function fillInAddress() {
   console.log(location.lat);
   //   codeAddress(document.getElementById('autocomplete').value);
 }
-
-
-
-
-
-//
-// var geocoder;
-// var map;
-// var mapOptions = {
-//   zoom: 17,
-//   center: { lat: 51.5, lng: -0.08 },
-//   mapTypeId: google.maps.MapTypeId.ROADMAP
-// };
-// var marker;
-// function initialize() {
-//   geocoder = new google.maps.Geocoder();
-//   map = new google.maps.Map(document.getElementById('map'), mapOptions);
-//   console.log('hello');
-//   // codeAddress();
-// }
-// initialize();
-// function codeAddress() {
-//   var address = `${popup.address}`;
-//   console.log('hello2');
-//   geocoder.geocode( { 'address': address}, function(results, status) {
-//     if (status === google.maps.GeocoderStatus.OK) {
-//       map.setCenter(results[0].geometry.location);
-//       if(marker)
-//         marker.setMap(null);
-//       marker = new google.maps.Marker({
-//         map: map,
-//         position: results[0].geometry.location,
-//         draggable: true
-//       });
-//       google.maps.event.addListener(marker, 'dragend', function() {
-// }
-//
-//
-//
-// 107
-// var simpleGoogleMapsApiExample = simpleGoogleMapsApiExample || {};
-//
-// simpleGoogleMapsApiExample.map = function (mapDiv, latitude, longitude, accuracy) {
-//   "use strict";
-//
-//   var createMap = function (mapDiv, coordinates) {
-//     var mapOptions = {
-//       center: coordinates,
-//       mapTypeId: google.maps.MapTypeId.ROADMAP,
-//       zoom: 15
-//     };
-//
-//     return new google.maps.Map(mapDiv, mapOptions);
-//   };
-//
-//   var addMarker = function (map, coordinates) {
-//     var markerOptions = {
-//       clickable: false,
-//       map: map,
-//       position: coordinates
-//     };
-//
-//     return new google.maps.Marker(markerOptions);
-//   };
-//
-//   var addCircle = function (map, coordinates, accuracy) {
-//     var circleOptions = {
-//       center: coordinates,
-//       clickable: false,
-//       fillColor: "blue",
-//       fillOpacity: 0.15,
-//       map: map,
-//       radius: accuracy,
-//       strokeColor: "blue",
-//       strokeOpacity: 0.3,
-//       strokeWeight: 2
-//     };
-//
-//     return new google.maps.Circle(circleOptions);
-//   };
-//
-//   var infoWindowVisible = (function () {
-//     var currentlyVisible = false;
-//
-//     return function (visible) {
-//       if (visible !== undefined) {
-//         currentlyVisible = visible;
-//       }
-//
-//       return currentlyVisible;
-//     };
-//   }());
-//
-//   var addInfoWindowListeners = function (map, marker, infoWindow) {
-//     google.maps.event.addListener(marker, "click", function () {
-//       if (infoWindowVisible()) {
-//         infoWindow.close();
-//         infoWindowVisible(false);
-//       } else {
-//         infoWindow.open(map, marker);
-//         infoWindowVisible(true);
-//       }
-//     });
-//
-//     google.maps.event.addListener(infoWindow, "closeclick", function () {
-//       infoWindowVisible(false);
-//     });
-//   };
-//
-//   var addInfoWindow = function (map, marker, address) {
-//     var infoWindowOptions = {
-//       content: address,
-//       maxWidth: 200
-//     };
-//     var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-//
-//     addInfoWindowListeners(map, marker, infoWindow);
-//
-//     return infoWindow;
-//   };
-//
-//   var initialize = function (mapDiv, latitude, longitude, accuracy) {
-//     var coordinates = new google.maps.LatLng(latitude, longitude);
-//     var map = createMap(mapDiv, coordinates);
-//     var marker = addMarker(map, coordinates);
-//     var geocoder = new google.maps.Geocoder();
-//
-//     addCircle(map, coordinates, accuracy);
-//
-//     geocoder.geocode({
-//       location: coordinates
-//     }, function (results, status) {
-//       if (status === google.maps.GeocoderStatus.OK && results[0]) {
-//         marker.setClickable(true);
-//         addInfoWindow(map, marker, results[0].formatted_address);
-//       }
-//     });
-//   };
-//
-//   initialize(mapDiv, latitude, longitude, accuracy);
-// };
-//
-// $(document).ready(function () {
-//   "use strict";
-//
-//   simpleGoogleMapsApiExample.map($("#map")[0], 55.612278, 12.999406, 70);
-// });

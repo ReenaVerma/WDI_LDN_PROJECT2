@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 // need this to ensure data is stored also.
 // if data fields do not have a model schema, the data/field would just be ignored
 const schema = new mongoose.Schema({
+  image: { type: String },
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }

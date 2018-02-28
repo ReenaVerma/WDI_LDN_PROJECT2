@@ -1,13 +1,37 @@
 
 const Popup = require('../models/popup');
+const Promise = require('bluebird');
 
 
 // INDEX RESTUL
+// function indexRoute(req, res) {
+//   // use models/song to get data from database
+//   Popup.find()
+//     // pass data into views/popuplisting/index
+//     .then(popup => res.render('popuplisting/index', { popup: popup }));
+// }
+
 function indexRoute(req, res) {
-  // use models/song to get data from database
-  Popup.find()
-    // pass data into views/music/index
-    .then(popup => res.render('popuplisting/index', { popup: popup }));
+  Promise.props({
+    allPopups: Popup.find().exec(),
+    popups: Popup.find(req.query).exec()
+  })
+    .then(data => {
+      const allTypes = data.allPopups.map(popup => popup.type);
+      const uniqueTypes = Array.from(new Set(allTypes)).sort();
+      res.render('popuplisting/index', {
+        popups: data.popups,
+        types: uniqueTypes,
+        selectedType: req.query.type
+      });
+    });
+
+  // console.log(req.query); //this will display anything that was in query string as an object. eg, /cheeses?origin=france will display {origin=france}
+  // Cheese.find(req.query)
+  //   .then(cheeses => res.render('cheeses/index', { cheeses }));
+  // Popup.find()
+  //   // pass data into views/popuplisting/index
+  //   .then(popup => res.render('popuplisting/index', { popup: popup }));
 }
 
 // NEW RESTFUL
@@ -90,17 +114,6 @@ function commentsCreateRoute(req, res, next) {
 
 
 
-// DELETE FUNCTION FOR COMMENTS
-// function commentsDeleteRoute(req, res, next) {
-//   Popup.findById(req.params.id)
-//     .then(popup => {
-//       const comment = popup.comments.id(req.params.commentId);
-//       comment.remove();
-//       return popup.save();
-//     })
-//     .then(popup => res.redirect(`/popuplisting/${popup._id}`))
-//     .catch(next);
-// }
 
 function commentsDeleteRoute(req, res, next) {
   Popup.findById(req.params.id)
@@ -115,7 +128,26 @@ function commentsDeleteRoute(req, res, next) {
 }
 
 
+// CREATE FUNCTION FOR COMMENT
+function galleryCreateRoute(req, res, next) {
+  console.log('req.body:', req.body);
 
+  // find the popup by ID
+  Popup.findById(req.params.id)
+    .then(popup => {
+      // push comment into the the body area of the popup page
+      popup.galleryImage.push(req.body);
+      console.log('popup:', popup);
+      req.flash('success', 'Image added!');
+      return popup.save();
+
+    })
+    .then(popup => {
+      console.log(popup);
+      res.redirect(`/popuplisting/${popup._id}`);
+    })
+    .catch(next); //catch any errors
+}
 
 
 
@@ -128,6 +160,8 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   commentsCreate: commentsCreateRoute,
-  commentsDelete: commentsDeleteRoute
+  commentsDelete: commentsDeleteRoute,
+  galleryCreate: galleryCreateRoute
+
   // show: showRoute
 };

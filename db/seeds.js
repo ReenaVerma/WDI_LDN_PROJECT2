@@ -10,8 +10,7 @@ mongoose.connect('mongodb://localhost/music-database');
 // clean the database first
 Popup.collection.drop();
 
-// create list of songs database
-// data/songs.js search/reference
+// create list of popups database
 // callback example
 Popup.create(popUpData, (err, popups) => {    //first function is inflight.
   if (err) console.log(err);
@@ -20,16 +19,3 @@ Popup.create(popUpData, (err, popups) => {    //first function is inflight.
   mongoose.connection.close();
   // now disconnect from database
 });
-
-
-
-// mongoose.connect('mongodb://localhost/cheese-database', (err, db) => {
-//   db.dropDatabase();
-//
-//   Cheese.create(CheeseData)
-//     // changed into a promoise
-//     .then(cheeses => console.log(`${cheeses.length} cheeses created`))
-//     // dont forget to add catch and finally/close database
-//     .catch(err => console.log(err))
-//     .finally(() => mongoose.connection.close());
-// });

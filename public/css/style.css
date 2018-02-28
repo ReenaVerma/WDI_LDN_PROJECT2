@@ -1,6 +1,14 @@
+ @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+ @import url('https//fonts.googleapis.com/css?family=Oswald');
+
+
+
 body {
   background: #e4e4e4;
+  font-family: 'Oswald', sans-serif;
 }
+
+
 
 h1 {
   border: 0px solid white;
@@ -10,6 +18,7 @@ h1 {
 
 h3 {
   font-size: 60px;
+  line-height: 1;
 }
 
 h4 {
@@ -21,7 +30,55 @@ p {
   color: #666;
   padding: 0px 0 0px 0;
 }
+
+
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label > input + i{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + i{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
+}
+
+
+
+form {
+
+  border-radius: 5px;
+
+
+}
+
+
+.registration {
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  width: 400px;
+  height: 450px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* register login form */
+.credentials {
+  margin: 0 auto;
+  width: 400px;
+  height: 300px;
+  background-color: #fff;
+}
+
 .container {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.white {
+  /* background-color: white; */
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -31,8 +88,17 @@ p {
   background-image: url(https://www.standard.co.uk/s3fs-public/styles/story_large/public/thumbnails/image/2017/03/31/10/model-market-street-food.jpg);
   background-size: cover;
   /* height: 650px; */
+}
 
+.hero.index {
+  background-image: url(https://nomad.video/wp-content/uploads/2016/09/food-table.gif);
+  background-size: cover;
+  /* https://nomad.video/wp-content/uploads/2016/09/food-table.gif */
+}
 
+.hero.register {
+  background-image: url(https://cdn.thenudge.com/wp-content/uploads/1970/01/pop_up_london_-1920x850.jpg);
+  background-size: cover;
 }
 
 
@@ -52,17 +118,21 @@ p {
   color: #fff;
 }
 
-.container {
-  padding-top: 20px;
-}
+
 
 .purple {
   color: #a368a4;
 }
 
+
+
+
+
+
 #map {
+  margin-top: 20px;
   width: 100%;
-  height: 400px;
+  height: 90%;
   background-color: grey;
 }
 

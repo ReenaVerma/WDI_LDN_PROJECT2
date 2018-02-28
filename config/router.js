@@ -26,6 +26,10 @@ router.route('/popuplisting/:id')
 router.get('/popuplisting/:id/edit', secureRoute, popups.edit);
 
 // CREATE COMMENTS
+router.route('/popuplisting/:id/gallery')
+  .post(secureRoute, popups.galleryCreate);
+
+// CREATE COMMENTS
 router.route('/popuplisting/:id/comments')
   .post(secureRoute, popups.commentsCreate);
 

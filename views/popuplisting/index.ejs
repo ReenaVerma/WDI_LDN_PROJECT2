@@ -1,17 +1,26 @@
-<section class="hero is-small homepage hero-head animated fadeIn is-bold">
+<section class="hero is-medium index hero-head animated fadeIn is-bold">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title has-text-white">latest listings in London</h1>
+      <h1 class="title has-text-white">latest popups in london</h1>
     </div>
   </div>
 </section>
 
 <main class="container">
   <h2 class="is-size-2 is-black">Latest Popups</h2>
+
+  <select name="type">
+    <% types.forEach(type => { %>
+      <option<% if(type === selectedType) { %> selected <% } %>><%= type %></option>
+    <% }) %>
+  </select>
+  <button>Go</button>
+</form>
+
   <div class="columns is-multiline">
 
-    <% popup.forEach(popup => { %>
-    <div class="column is-one-quarter-desktop is-half-tablet animated fadeInUp">
+    <% popups.forEach(popup => { %>
+    <div class="column is-one-third-desktop is-half-tablet animated fadeInUp">
     <a href="/popuplisting/<%= popup._id %>">
     <div class="card">
       <div class="card-image">

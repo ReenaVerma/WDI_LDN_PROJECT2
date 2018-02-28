@@ -1,22 +1,53 @@
+<section class="hero is-small register hero-head animated fadeIn is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-white">register an account</h1>
+    </div>
+  </div>
+</section>
+
 <div class="container animated fadeIn">
-  <h1 class="is-size-1 purple">Register an account</h1>
-  <form method="POST" action="/register">
+  <%# <h1 class="is-size-1 purple">Register an account</h1> %>
+  <form method="POST" action="/register" class="registration">
     <div class="field">
-      <label for="username">Username</label>
+      <label class="label" for="username">Username</label>
+      <div class="control has-icons-left">
       <input class="input" type="text" name="username" id="username">
+      <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
+      </div>
     </div>
+
     <div class="field">
-      <label for="email">Email</label>
+      <label class="label" for="email">Email</label>
+      <div class="control has-icons-left">
       <input class="input" type="text" name="email" id="email">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
     </div>
+    </div>
+
     <div class="field">
-      <label for="password">Password</label>
+      <label class="label" for="password">Password</label>
+      <div class="control has-icons-left">
       <input class="input" type="password" name="password" id="password">
+      <span class="icon is-small is-left">
+        <i class="fas fa-key"></i>
+      </span>
     </div>
+    </div>
+
     <div class="field">
-      <label for="passwordConfirmation">Password Confirmation</label>
+      <label class="label" for="passwordConfirmation">Password Confirmation</label>
+      <div class="control has-icons-left">
       <input class="input" type="password" name="passwordConfirmation" id="passwordConfirmation">
+      <span class="icon is-small is-left">
+        <i class="fas fa-key"></i>
+      </span>
     </div>
-    <button class="has-text-primary button">Register</button>
+    </div>
+    <button class="is-primary button">Register</button>
   </form>
   </div>

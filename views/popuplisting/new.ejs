@@ -12,20 +12,23 @@
   <form method="POST" action="/popuplisting">
     <div class="field">
       <label class="label">Pop-Up Name:</label>
+      <div class="control has-icons-left">
+        <input class="input is-rounded" name="title" type="text" placeholder="Name" required minlength="2">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+      </div>
+    </div>
+    <div class="control">
+      <label class="label">Date:</label>
       <div class="control">
-        <input class="input" name="title" type="text" placeholder="Name" required minlength="2">
+        <input class="input is-rounded" name="date" type="date" placeholder="date" required minlength="2">
       </div>
     </div>
     <div class="field">
-      <label class="label">When:</label>
+      <label class="label">Quirk factor:</label>
       <div class="control">
-        <input class="input" name="when" type="text" placeholder="When" required minlength="2">
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Which area in London?:</label>
-      <div class="control">
-        <input class="input" name="where" type="text" placeholder="EG... Peckham" required minlength="2">
+        <input class="input is-rounded" name="twoWords" type="text" placeholder="Two random words to describe your event..." required minlength="2">
       </div>
     </div>
     <div class="field">
@@ -44,7 +47,7 @@
     <div class="field">
       <label class="label">Image upload</label>
       <div class="control">
-        <input class="input" name="image" type="text" placeholder="Improve your listings page with an image!"  pattern="https?://.+">
+        <input class="input is-rounded" name="image" type="text" placeholder="Improve your listings page with an image!"  pattern="https?://.+">
       </div>
     </div>
 
@@ -53,7 +56,7 @@
       <input type="hidden" name="lng" />
       <label class="label">Address:</label>
       <div class="control">
-        <input id="autocomplete" name="loc" class="input" type="text" placeholder="" required>
+        <input id="autocomplete" name="loc" class="input is-rounded" type="text" placeholder="" required>
       </div>
     </div>
 

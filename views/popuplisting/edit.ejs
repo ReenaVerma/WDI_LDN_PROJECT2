@@ -14,15 +14,15 @@
       </div>
     </div>
     <div class="field">
-      <label class="label">When:</label>
+      <label class="label">Date:</label>
       <div class="control">
-        <input class="input" name="when" type="text" placeholder="When" required minlength="2" value="<%= popup.when %>">
+        <input class="input" name="date" type="text" placeholder="date" required minlength="2" value="<%= popup.date %>">
       </div>
     </div>
     <div class="field">
-      <label class="label">Which area in London?:</label>
+      <label class="label">Describe your listing in two words!</label>
       <div class="control">
-        <input class="input" name="where" type="text" required minlength="2" value="<%= popup.where %>">
+        <input class="input" name="twoWords" type="text" required minlength="2" value="<%= popup.twoWords %>">
       </div>
     </div>
     <div class="field">
@@ -46,6 +46,8 @@
         <input id="autocomplete" name="loc" class="input" type="text" required value="<%= popup.loc %>">
       </div>
     </div>
+
+
 
     <div class="field">
       <label class="label">A short blurb about the event:</label>
