@@ -40,14 +40,26 @@ label > input + i{ /* IMAGE STYLES */
   cursor:pointer;
   border:2px solid transparent;
 }
-label > input:checked + i{ /* (RADIO CHECKED) IMAGE STYLES */
-  border:2px solid #f00;
+
+label > input + i:hover { /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+  color: #FFED85;
 }
+
+
+
+label > input:checked ~ .checkmark {
+    color: #2196F3;
+}
+
+
 
 
 
 form {
 
+  border: 1px solid red;
   border-radius: 5px;
 
 
@@ -71,10 +83,7 @@ form {
   background-color: #fff;
 }
 
-.container {
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
+
 
 .white {
   /* background-color: white; */

@@ -34,176 +34,188 @@ google.maps.event.addDomListener(window,'load', initialize);
 <%# ROW OF HELPFUL ICONS/INFO %>
 <div class="container">
 
+
   <div class="columns has-text-centered white">
     <div class="column"><i class="fas fa-calendar-alt fa-3x"></i><h4>date</h4><%= popup.date %></div>
-    <div class="column"><i class="fas fa-pound-sign fa-3x"></i><h4>cost</h4></div>
+    <div class="column"><i class="fas fa-pound-sign fa-3x"></i><h4>cost</h4><%= popup.cost %></div>
     <div class="column"><i class="fas fa-glass-martini fa-3x"></i><h4>type</h4><%= popup.type %></div>
     <div class="column"><i class="fas fa-map-marker fa-3x"></i><h4>address</h4><span id="address"><%= popup.loc %></span></div>
-
   </div>
 
 
 
-  <%# INTRO AND GOOGLE MAPS ROW %>
-  <div class="columns">
-    <div class="column">
-      <h3>"<%= popup.twoWords %>"</h3>
-      <h4><em>added by user abc</em></h4>
-      <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p id="reviewsCount">12 reviews</p>
-      <p><%= popup.description %></p>
-    </div>
 
-    <div class="column">
-      <div id="map"></div>
-    </div>
-  </div>
-
-
-  <% if(locals.isAuthenticated) { %>
-
-    <div class="columns is-gapless is-0 is-multiline">
-        <div class="column">
-          <a href="/popuplisting/<%= popup._id %>/edit" class="button is-primary is-pulled-left">Edit Pop-Up</a>
-        </div>
-
-        <div class="column">
-          <form method="POST" action="/popuplisting/<%= popup._id %>">
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="button is-danger">Delete</button>
-          </form>
-        </div>
-    </div>
-
-  <% } %>
-
-
-<%# RANDOM IMAGE INSERT %>
-  <div class="columns">
-    <div class="column has-text-centered">
-      <img src="<%= popup.image %>" alt="<%= popup.image %>">
-    </div>
-  </div>
-
-
-  <%# LOGGED IN FUNCTION - UPLOAD AN IMAGE %>
-  <% if(locals.isAuthenticated) { %>
-  <div class="columns">
-    <div class="column">
-
-    <form method="POST" action="/popuplisting/<%= popup._id %>/gallery">
-      <label class="label">Image</label>
-      <div>
-        <input id='imageUpload' type="hidden" name="galleryImage" required />
-          <a class="button is-large has-text-centered is-primary" id="upload">
-            <span class="icon is-medium"><i class="fab fa-github"></i></span>
-            <span>Upload your photos</span>
-          </a>
-        <button class="button is-primary">Submit</button>
-      </div>
-    </form>
-    </div>
-    </div>
-
-  <% } %>
-
-
-  <div class="columns">
+    <%# INTRO AND GOOGLE MAPS ROW %>
+    <div class="columns">
       <div class="column">
-        <% if(popup.galleryImage[0]){ %>
-          <img src="<%= popup.galleryImage[0].galleryImage %>" />
-        <% } %>
-  </div>
-</div>
+        <h3>"<%= popup.twoWords %>"</h3>
+        <h4><em>added by user abc</em></h4>
+        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p id="reviewsCount">12 reviews</p>
+        <p><%= popup.description %></p>
+      </div>
 
-
-
-    <%# ROW 4 = User Comments %>
-
-  <div class="columns">
-    <div class="column">
-
+      <div class="column">
+        <div id="map"></div>
+      </div>
+    </div>
 
 
 
     <% if(locals.isAuthenticated) { %>
 
-    <div class="columns">
-      <div class="column">
-      <hr />
+      <div class="columns is-gapless is-0 is-multiline">
+          <div class="column">
+            <a href="/popuplisting/<%= popup._id %>/edit" class="button is-primary is-pulled-left">Edit Pop-Up</a>
+          </div>
 
-        <ul class="comments">
-          <% popup.comments.forEach(comment => { %>
-            <li>
-            <div class="box">
-              <% if (comment.isOwnedBy(locals.currentUser)) { %>
-              <form class="delete" method="POST" action="/popuplisting/<%= popup._id %>/comments/<%= popup._id %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <button class="delete">x</button>
-              </form>
-              <% } %>
+          <div class="column">
+            <form method="POST" action="/popuplisting/<%= popup._id %>">
+              <input type="hidden" name="_method" value="DELETE">
+              <button class="button is-danger">Delete</button>
+            </form>
+          </div>
+      </div>
 
-              <article class="media">
-                <div class="media-left">
-                  <figure class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="content">
-                  <p><%= comment.rating %> Stars!</p>
-                    <p><%= comment.content %></p>
-                      <% if(comment.user) { %>
-                        <strong><%= comment.user.username %></strong>
-                      <% } %>
-                  </div>
-                </div>
-              </article>
+    <% } %>
+
+
+      <%# RANDOM IMAGE INSERT %>
+        <div class="columns">
+          <div class="column has-text-centered">
+            <img src="<%= popup.image %>" alt="<%= popup.image %>">
+          </div>
+        </div>
+
+
+        <%# LOGGED IN FUNCTION - UPLOAD AN IMAGE %>
+        <% if(locals.isAuthenticated) { %>
+        <div class="columns">
+          <div class="column">
+
+          <form method="POST" action="/popuplisting/<%= popup._id %>/gallery">
+            <label class="label">Image</label>
+            <div>
+              <input id='imageUpload' type="hidden" name="galleryImage" required />
+                <a class="button is-large has-text-centered is-primary" id="upload">
+                  <span class="icon is-medium"><i class="fab fa-github"></i></span>
+                  <span>Upload your photos</span>
+                </a>
+              <button class="button is-primary">Submit</button>
             </div>
-            </li>
-        </ul>
+          </form>
+          </div>
+          </div>
 
+        <% } %>
+
+
+        <div class="columns">
+          <div class="column">
+            <% if(popup.galleryImage[0]){ %>
+              <img src="<%= popup.galleryImage[0].galleryImage %>" />
+            <% } %>
+          </div>
         </div>
-        </div>
-
-    <% }) %>
-
-    <form method="POST" action="/popuplisting/<%= popup._id %>/comments">
 
 
-      <label class = "full" for="star5" title="Awesome - 5 stars">
-      <input type="radio" id="star5" name="rating" value="5" />
-      <i class="fa fa-star"></i>
-      </label>
-
-      <label class = "full" for="star4" title="Pretty good - 4 stars">
-      <input type="radio" id="star4" name="rating" value="4" />
-      <i class="fa fa-star"></i>
-      </label>
+        <%# ROW 4 = User Comments %>
 
 
-      <label class = "full" for="star3" title="Meh - 3 stars">
-      <input type="radio" id="star3" name="rating" value="3" />
-      <i class="fa fa-star"></i>
-      </label>
+      <div class="columns">
+        <div class="column">
 
-      <label class = "full" for="star2" title="Kinda bad - 2 stars">
-      <input type="radio" id="star2" name="rating" value="2" />
-      <i class="fa fa-star"></i>
-      </label>
+        <% if(locals.isAuthenticated) { %>
 
-      <label class = "full" for="star1" title="Sucks big time - 1 star">
-      <input type="radio" id="star1" name="rating" value="1" />
-      <i class="fa fa-star"></i>
-      </label>
+            <div class="columns" style="border: 1px solid green">
+              <div class="column">
+
+               <hr />
+                <ul class="comments">
+                  <% popup.comments.forEach(comment => { %>
+
+                  <li>
+
+                  <div class="box">
+
+                      <% if (comment.isOwnedBy(locals.currentUser)) { %>
+                      <form class="delete" method="POST" action="/popuplisting/<%= popup._id %>/comments/<%= popup._id %>">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="delete">x</button>
+                      </form>
+                      <% } %>
+
+                      <article class="media">
+
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                          </figure>
+                        </div>
+
+                        <div class="media-content">
+                          <div class="content">
+                              <p><%= comment.rating %> Stars!</p>
+                              <p><%= comment.content %></p>
+
+                              <% if(comment.user) { %>
+                                <strong><%= comment.user.username %></strong>
+                              <% } %>
+                          </div>
+                        </div>
+
+                      </article>
+                  </div>
+                  </li>
+                  <% }) %>
+                  </ul>
+                </div>
+                </div>
+              <% } %>
+              </div>
+              </div>
+
+              <div class="columns" style="border: 1px solid green">
+                  <div class="column">
+                  <% if(locals.isAuthenticated) { %>
+                  <form method="POST" action="/popuplisting/<%= popup._id %>/comments">
 
 
-      <textarea class="textarea" name="content"></textarea>
+                    <label class = "full rating" for="star5" title="Awesome - 5 stars">
+                    <input type="radio" id="star5" name="rating" value="5" />
+                    <i class="fa fa-star checkmark"></i>
+                    </label>
 
-      <button class="button is-primary">Submit</button>
+                    <label class = "full rating" for="star4" title="Pretty good - 4 stars">
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <i class="fa fa-star checkmark"></i>
+                    </label>
 
-    </form>
 
-  <% } %>
-    </div>
-  </div>
+                    <label class = "full" for="star3" title="Meh - 3 stars">
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <i class="fa fa-star checkmark"></i>
+                    </label>
+
+                    <label class = "full" for="star2" title="Kinda bad - 2 stars">
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <i class="fa fa-star checkmark rating"></i>
+                    </label>
+
+                    <label class = "full" for="star1" title="Sucks big time - 1 star">
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <i class="fa fa-star checkmark rating"></i>
+                    </label>
+
+
+                    <textarea class="textarea" name="content"></textarea>
+
+                    <button class="button is-primary">Submit</button>
+
+                  </form>
+                  </div>
+                              <% } %>
+                  </div>
+          </div>
+
+
 </div>

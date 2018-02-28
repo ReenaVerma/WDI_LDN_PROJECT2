@@ -108,6 +108,7 @@ function commentsCreateRoute(req, res, next) {
     .then(popup => {
       console.log(popup);
       res.redirect(`/popuplisting/${popup._id}`);
+
     })
     .catch(next); //catch any errors
 }
@@ -126,6 +127,7 @@ function commentsDeleteRoute(req, res, next) {
     .then(popup => res.redirect(`/popuplisting/${popup._id}`))
     .catch(next);  //any problems send to error handler
 }
+
 
 
 // CREATE FUNCTION FOR COMMENT

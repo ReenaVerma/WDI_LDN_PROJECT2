@@ -17,6 +17,7 @@ $(() => {
 
   const button = document.getElementById('upload');
   const gallery = document.getElementById('gallery');
+  const imgPreview = document.getElementById('imgPreview');
   const input = document.getElementById('imageUpload');
 
   let transformURL = 'https://cdn.filestack.com/watermark=file:';
@@ -28,7 +29,7 @@ $(() => {
     client.pick({
       fromSources:['local_file_system','imagesearch','facebook','instagram','webcam'],
       accept: 'image/*',
-      maxFiles: 5,
+      maxFiles: 3,
       transformations: {
         crop: { force: true },
         crop: { aspectRatio:1.333 }
@@ -38,6 +39,7 @@ $(() => {
       console.log(fileUrl);
       // gallery.setAttribute('src', fileUrl);
       input.value = fileUrl;
+      // imgPreview.src = fileUrl;
       console.log(input.value);
 
 
@@ -132,7 +134,6 @@ geocoder.geocode( { 'address': address}, function(results, status) {
 function fillInAddress() {
   var place = autocomplete.getPlace();
   console.log(place);
-  console.log(place.photos[0].getUrl);
   const lat = document.querySelector('[name=lat]');
   const lng = document.querySelector('[name=lng]');
   const location = place.geometry.location.toJSON();

@@ -47,7 +47,13 @@
     <div class="field">
       <label class="label">Image upload</label>
       <div class="control">
-        <input class="input is-rounded" name="image" type="text" placeholder="Improve your listings page with an image!"  pattern="https?://.+">
+        <%# <input class="input is-rounded" name="image" type="text" placeholder="Improve your listings page with an image!"  pattern="https?://.+"> %>
+        <input class="input" id='imageUpload' name="image" placeholder="Improve your listings page with an image!" required type="hidden" />
+        <img id="imgPreview" src="" height="200" width="200">
+        <a class="button is-large has-text-centered is-primary" id="upload">
+          <span class="icon is-medium"><i class="fab fa-github"></i></span>
+          <span>Upload your photos</span>
+        </a>
       </div>
     </div>
 
