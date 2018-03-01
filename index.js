@@ -16,11 +16,12 @@ const userAuth = require('./lib/userAuth');
 // CALL EXPRESS & SERVER
 // THIS IS WHERE WE ARE CREATING OUR APP
 const app = express();
-const PORT = 8000; //javascript users tend to use this port.  ruby users tend to use 3000
+const PORT = process.env.PORT || 8000; //javascript users tend to use this port.  ruby users tend to use 3000
 
 // CONNECT TO THIS DATABASE
 //local host is 127.0.0.1.  basically using your local comupter server
-mongoose.connect('mongodb://localhost/music-database');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database');
+// add in the first part after you've run heroku
 
 // SET EJS USE
 app.set('view engine', 'ejs');
