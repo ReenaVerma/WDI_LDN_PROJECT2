@@ -2,20 +2,31 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const Popup = require('../models/popup');
-const popUpData = require('../data/popups');
+let popUpData = require('./data/popups');
+const User = require('../models/user');
 
 // connect to this database
-mongoose.connect('mongodb://localhost/music-database');
+mongoose.connect('mongodb://localhost/music-database', (err, db) => {
+  // clean the database first
+  db.dropDatabase();
 
-// clean the database first
-Popup.collection.drop();
+  // create list of popups database
+  // callback example
+  User.create({
+    username: 'ReenaVerma',
+    email: 'reena@reena.com',
+    password: 'password',
+    passwordConfirmation: 'password'
+  })
+    .then(user => {
+      popUpData = popUpData.map(popup => {
+        popup.user = user;
+        return popup;
+      });
 
-// create list of popups database
-// callback example
-Popup.create(popUpData, (err, popups) => {    //first function is inflight.
-  if (err) console.log(err);
-  console.log(`${popups.length} popups created`);
-
-  mongoose.connection.close();
-  // now disconnect from database
+      return Popup.create(popUpData);
+    })
+    .then(popups => console.log(`${popups.length} popups created`))
+    .catch(err => console.log(err))
+    .finally(() => mongoose.connection.close()); // now disconnect from database
 });

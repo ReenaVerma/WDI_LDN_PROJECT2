@@ -41,9 +41,8 @@ function newRoute (req, res) {
 
 // CREATE RESTFUL
 function createRoute(req, res, next) {
-  console.log(req.body);
+  req.body.user = req.currentUser;
   Popup.create(req.body)
-
     .then(() => res.redirect('/popuplisting'))
     .catch(next);
 
@@ -53,7 +52,7 @@ function createRoute(req, res, next) {
 // SHOW RESTFUL
 function showRoute(req, res, next) {
   Popup.findById(req.params.id)
-    .populate('comments.user')
+    .populate('user comments.user')
     // populate gets the record
     // inside the comments area, find all the users and populate commentSchema
     .then(popup => {

@@ -5,10 +5,10 @@ module.exports = [{
   date: '13 March 2018',
   twoWords: 'Peter Pan shows, eh…',
   type: 'Art',
-  cost: 'Average',
+  cost: 'Average - ££',
   lat: 51.501391,
   lng: -0.112889,
-  loc: 'The Vaults, Leake Street, SE1 7NN '
+  loc: 'The Vaults, Leake Street, SE1 7NN'
 }, {
   image: 'https://thenudge.com/wp-content/uploads/2018/01/hip_hop.jpg',
   title: 'North London Brewfest',
@@ -16,7 +16,7 @@ module.exports = [{
   date: '06 April 2018',
   twoWords: '25 craft beers. Nuff said.',
   type: 'Food & Drink',
-  cost: 'Free',
+  cost: 'Free - £',
   lat: 51.549379,
   lng: -0.091309,
   loc: 'The Snooty Fox, 75 Grosvenor Avenue, N5 2NN'
@@ -27,7 +27,7 @@ module.exports = [{
   date: '27 March 2018',
   twoWords: 'Get in, loser. You’re going to a brunch.',
   type: 'Food & Drink',
-  cost: 'expensive',
+  cost: 'Expensive - £££',
   lat: 51.526107,
   lng: -0.083571,
   loc: 'Floripa , 91-92 Great Eastern St, EC2A 3HZ'
@@ -38,7 +38,7 @@ module.exports = [{
   date: '05 June 2018',
   twoWords: 'Cant wait to sample these sharmas :)',
   type: 'Food & Drink',
-  cost: 'Free',
+  cost: 'Free - £',
   lat: 51.526149,
   lng: -0.108687,
   loc: 'Shawarma Bar, 46 Exmouth Market, EC1R 4QE'
@@ -49,7 +49,7 @@ module.exports = [{
   date: '05 April 2018',
   twoWords: 'There are conga lines into the bar!',
   type: 'Music',
-  cost: 'Average',
+  cost: 'Average - ££',
   lat: 51.513359,
   lng: -0.158896,
   loc: 'The Marble Arch Theatre, Marble Arch, W1C 1CX'
@@ -60,7 +60,7 @@ module.exports = [{
   date: '01 May 2018',
   twoWords: 'There are conga lines into the bar!',
   type: 'Music',
-  cost: 'Free',
+  cost: 'Free - £',
   lat: 51.524607,
   lng: -0.080174,
   loc: 'The Old Blue Last, 38 Great Eastern Street, EC2A 3ES'

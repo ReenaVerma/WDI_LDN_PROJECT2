@@ -49,54 +49,8 @@ $(() => {
 
   // USER RATINGS
 
-  const reviewsCount = document.getElementById('reviewsCount');
-  const userRating = document.getElementById('userRating');
 
-  const star5 = document.getElementById('star5');
-  const star4 = document.getElementById('star4');
-  const star3 = document.getElementById('star3');
-  const star2 = document.getElementById('star2');
-  const star1 = document.getElementById('star1');
 
-  let rating = 0;
-
-  function upCount() {
-    console.log('clicked ' + rating + 'times');
-    rating++;
-    // averageCount = rating;
-    console.log('incremented');
-    reviewsCount.innerHTML = rating + ' stars!';
-    // console.log(averageCount);
-    // total value clicked divide by rating
-    // console.log(values);
-    //
-    // sum + rating/ ratings.length;
-  }
-
-  // 5 STARS
-  star5.addEventListener('click', () => {
-    upCount();
-  });
-
-  // 4 STARS
-  star4.addEventListener('click', () => {
-    upCount();
-  });
-
-  // 3 STARS
-  star3.addEventListener('click', () => {
-    upCount();
-  });
-
-  // 2 STARS
-  star2.addEventListener('click', () => {
-    upCount();
-  });
-
-  // 1 STARS
-  star1.addEventListener('click', () => {
-    upCount();
-  });
 
 
 

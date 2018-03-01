@@ -39,12 +39,10 @@ google.maps.event.addDomListener(window,'load', initialize);
     <div class="column">
       <i class="fas fa-calendar-alt fa-3x has-text-grey-light"></i>
       <h5 class="has-text-grey-light">date</h5>
-      <p class="has-text-primary"><%= popup.date %></p>
+      <p class="has-text-primary"><%= popup.formattedDate %></p>
     </div>
 
     <div class="column">
-      <i class="fas fa-pound-sign fa-3x has-text-grey-light"></i>
-      <i class="fas fa-pound-sign fa-3x has-text-grey-light"></i>
       <i class="fas fa-pound-sign fa-3x has-text-grey-light"></i>
       <h5 class="has-text-grey-light">cost</h5><p class="has-text-primary"><%= popup.cost %></p></div>
 
@@ -59,6 +57,7 @@ google.maps.event.addDomListener(window,'load', initialize);
       <h5 class="has-text-grey-light">address<span id="address"></h5>
       <p class="has-text-primary"><%= popup.loc %></p>
     </span></div>
+
   </div>
 
 
@@ -72,8 +71,9 @@ google.maps.event.addDomListener(window,'load', initialize);
     <%# INTRO AND NEW LISTING IMAGE %>
     <div class="columns ugc_row mobile">
       <div class="column">
+        <h5 class="has-text-warning"><i class="fas fa-star"></i>&nbsp;<%= popup.comments.length %>  member reviews!</h5>
         <h3>"<%= popup.twoWords %>"</h3>
-        <h4><em>added by user <span class="has-text-primary">ABC</span>: <%= popup.username %></em></h4>
+        <h4><em class="has-text-grey-light">added by user <span class="has-text-primary"><%= popup.user.username %></span>:</em></h4>
 
         <p><%= popup.description %></p>
 
@@ -203,6 +203,7 @@ google.maps.event.addDomListener(window,'load', initialize);
                           <div class="content">
                           <% if(comment.user) { %>
                             <strong><p>Posted by member: <%= comment.user.username %></p></strong>
+                            <strong><p>Date posted: <%= comment.formattedDate %></p></strong>
                           <% } %>
                               <p>Rated <%= comment.rating %>/5 stars!</p>
                               <p style="border-top: 1px solid #e4e4e4;"><%= comment.content %></p>
@@ -223,9 +224,9 @@ google.maps.event.addDomListener(window,'load', initialize);
               <div class="columns mobile">
                   <div class="column">
 
-
                   <% if(locals.isAuthenticated) { %>
-                  <h5 id="reviewsCount"> Click the stars to rate this event!  And leave a comment!</h5>
+
+                  <h5> Click the stars to rate this event!  And leave a comment!</h5>
                   <form method="POST" action="/popuplisting/<%= popup._id %>/comments">
 
 
@@ -258,7 +259,7 @@ google.maps.event.addDomListener(window,'load', initialize);
 
                     <textarea class="textarea" name="content"></textarea>
 
-                    <button class="button is-primary">submit</button>
+                    <button id="reviewButton" class="button is-primary">submit</button>
 
                   </form>
                   </div>

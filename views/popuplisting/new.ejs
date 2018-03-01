@@ -31,15 +31,28 @@
         <input class="input is-rounded is-medium" name="twoWords" type="text" placeholder="A short few words, to summmarise your listing.." required minlength="2">
       </div>
     </div>
+
     <div class="field">
       <label class="label is-medium">Event type</label>
       <div class="control">
-        <%# <input class="input" name="where" type="text" placeholder="EG... Peckham" required minlength="2"> %>
         <div class="select">
           <select name="type">
             <option value="Food and drink">Food & Drink</option>
             <option value="Art">Art</option>
             <option value="Music">Music</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label is-medium">Event type</label>
+      <div class="control">
+        <div class="select">
+          <select name="cost">
+            <option value="Free">Free - £ </option>
+            <option value="Average">Average - ££ </option>
+            <option value="Expensive">Expensive - £££ </option>
           </select>
         </div>
       </div>
