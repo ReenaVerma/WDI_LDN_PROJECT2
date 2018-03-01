@@ -65,26 +65,27 @@ google.maps.event.addDomListener(window,'load', initialize);
 
   <div class="columns">
     <div class="column has-text-centered title_border ">
-          <h2 class="subtitle is-centered">Event Listing:</h2>
-        </div>
+      <h2 class="subtitle is-centered">Event Listing:</h2>
+    </div>
   </div>
     <%# INTRO AND NEW LISTING IMAGE %>
-    <div class="columns ugc_row mobile">
-      <div class="column">
-        <h5 class="has-text-warning"><i class="fas fa-star"></i>&nbsp;<%= popup.comments.length %>  member reviews!</h5>
-        <h3>"<%= popup.twoWords %>"</h3>
-        <h4><em class="has-text-grey-light">added by user <span class="has-text-primary"><%= popup.user.username %></span>:</em></h4>
+  <div class="columns ugc_row mobile">
+    <div class="column">
+      <h5 class="has-text-warning"><i class="fas fa-star"></i>&nbsp;<%= popup.comments.length %>  member reviews!</h5>
+      <h3>"<%= popup.twoWords %>"</h3>
+      <h4><em class="has-text-grey-light">added by user <span class="has-text-primary"><%= popup.user.username %></span>:</em></h4>
 
-        <p><%= popup.description %></p>
+      <p><%= popup.description %></p>
 
 
         <%# EDIT AND DELETE BUTTONS %>
-        <br />
-        <% if(locals.isAuthenticated) { %>
-          <div class="columns is-gapless is-0 is-multiline is-half">
-              <div class="column is-one-quarter">
-                <a href="/popuplisting/<%= popup._id %>/edit" class="button is-black is-outlined is-pulled-left">edit your listing...</a>
-              </div>
+      <br />
+      <% if(locals.isAuthenticated) { %>
+        <div class="columns is-gapless is-0 is-multiline is-half">
+          <div class="column is-one-quarter">
+            <a href="/popuplisting/<%= popup._id %>/edit" class="button is-black is-outlined is-pulled-left">edit your listing...</a>
+
+          </div>
 
               <div class="column is-one-quarter">
                 <form method="POST" action="/popuplisting/<%= popup._id %>">

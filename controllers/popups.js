@@ -12,6 +12,7 @@ const Promise = require('bluebird');
 // }
 
 function indexRoute(req, res) {
+  req.body.user = req.currentUser;
   Promise.props({
     allPopups: Popup.find().exec(),
     popups: Popup.find(req.query).exec()
@@ -95,6 +96,7 @@ function deleteRoute(req, res) {
 // CREATE FUNCTION FOR COMMENT
 function commentsCreateRoute(req, res, next) {
   req.body.user = req.currentUser;
+  //set the currentuser as the owner of the post created
   console.log(req.body);
 
   // find the popup by ID

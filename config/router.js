@@ -14,7 +14,7 @@ router.get('/popuplisting/new', secureRoute, popups.new);
 // INDEX AND CREATE RESTFUL
 router.route('/popuplisting')
   .get(popups.index)
-  .post(popups.create);
+  .post(secureRoute, popups.create);
 
 // SHOW, UPDATE AND DELETE RESTFUL
 router.route('/popuplisting/:id')
