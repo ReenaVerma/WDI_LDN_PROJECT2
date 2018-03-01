@@ -12,7 +12,7 @@ const Promise = require('bluebird');
 // }
 
 function indexRoute(req, res) {
-  req.body.user = req.currentUser;
+
   Promise.props({
     allPopups: Popup.find().exec(),
     popups: Popup.find(req.query).exec()
