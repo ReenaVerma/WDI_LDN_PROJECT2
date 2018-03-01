@@ -42,9 +42,12 @@
         </figure>
       </div>
 
-      <div class="card-content">
-            <p class="title is-4 is-black"><%= popup.title %></p>
-            <p class="subtitle is-6 is-black"><%= popup.where %></p>
+      <div class="card-content fade">
+            <h4><%= popup.title %></h4>
+            <h5><%= popup.type %></h5>
+            <p><strong>"<%= popup.twoWords %>"</strong></p>
+            <p><em>posted by user: ABC <%= popup.user %></em></p>
+            <a class="is-text-primary">read more</a>
 
       </div>
     </div>

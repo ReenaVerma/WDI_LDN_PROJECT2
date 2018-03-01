@@ -1,8 +1,8 @@
 <nav class="navbar is-fixed-top is-black">
 
   <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+      <a class="navbar-item" href="/">
+        <img src="../images/popup_logo.gif" alt="Popup Culture:  London's number social network for popup events" width="112" height="28">
       </a>
 
        <div class="navbar-burger burger" data-target="#mobile-menu" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
@@ -10,17 +10,18 @@
         <span></span>
         <span></span>
       </div>
+  </div>
 
     <div class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" href="/">Home</a>
-        <a class="navbar-item" href="/popuplisting">Recent Listings</a>
+        <a class="navbar-item" href="/">home</a>
+        <a class="navbar-item" href="/popuplisting">recent listings</a>
         <% if(locals.isAuthenticated) { %>
-        <a class="navbar-item" href="/popuplisting/new">List a New Pop-Up</a>
-        <a class="navbar-item" href="/logout">Logout</a>
+        <a class="navbar-item" href="/popuplisting/new">list a new pop-up</a>
+        <a class="navbar-item" href="/logout">logout</a>
         <% } else { %>
-        <a class="navbar-item" href="/register">Register</a>
-        <a class="navbar-item" href="/login">Login</a>
+        <a class="navbar-item" href="/register">register</a>
+        <a class="navbar-item" href="/login">login</a>
         <% } %>
       </div>
     </div>

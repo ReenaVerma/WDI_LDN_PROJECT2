@@ -2,13 +2,15 @@
  @import url('https//fonts.googleapis.com/css?family=Oswald');
 
 
-
+html,body {
+    height: 100%;
+}
 
 body {
   background: #fff;
   font-family: 'Oswald', sans-serif;
-
 }
+
 
 .new_background {
   background-image: url(https://cdn.thenudge.com/wp-content/uploads/1970/01/pop_up_london_-1920x850.jpg);
@@ -40,8 +42,9 @@ body {
    background: rgba(0, 0, 0, 0.5);
    padding-left: 30px;
    padding-right: 30px;
-
 }
+
+
 
 h1 {
   border: 0px solid white;
@@ -190,6 +193,7 @@ form {
 
 .navbar-item {
   color: #fff;
+  font-size: 1.3rem;
 }
 
 
@@ -230,4 +234,20 @@ footer p {
 
 .error {
   color: red;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .opacity {
+    line-height: 1.4;
+  }
+
+  .mobile {
+    text-align: center;
+  }
+  .hp-signup {
+    background-color: black;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }

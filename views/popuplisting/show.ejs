@@ -70,7 +70,7 @@ google.maps.event.addDomListener(window,'load', initialize);
         </div>
   </div>
     <%# INTRO AND NEW LISTING IMAGE %>
-    <div class="columns ugc_row">
+    <div class="columns ugc_row mobile">
       <div class="column">
         <h3>"<%= popup.twoWords %>"</h3>
         <h4><em>added by user <span class="has-text-primary">ABC</span>: <%= popup.username %></em></h4>
@@ -151,9 +151,9 @@ google.maps.event.addDomListener(window,'load', initialize);
               <input id='imageUpload' type="hidden" name="galleryImage" required />
                 <a class="button is-large has-text-centered is-primary is-outlined" id="upload">
                   <span class="icon is-medium"><i class="fas fa-camera-retro"></i></span>
-                  <span>Upload your photos</span>
+                  <span>select your photos</span>
                 </a>
-              <br /><button class="button is-primary">Submit</button>
+              <br /><button class="button is-primary">upload photo</button>
             </div>
           </form>
           </div>
@@ -167,7 +167,7 @@ google.maps.event.addDomListener(window,'load', initialize);
         <%# ROW 4 = User Comments %>
 
     <% if(locals.isAuthenticated) { %>
-      <div class="columns">
+      <div class="columns mobile">
         <div class="column">
 
 
@@ -220,7 +220,7 @@ google.maps.event.addDomListener(window,'load', initialize);
               </div>
             <% } %>
 
-              <div class="columns">
+              <div class="columns mobile">
                   <div class="column">
 
 
@@ -258,7 +258,7 @@ google.maps.event.addDomListener(window,'load', initialize);
 
                     <textarea class="textarea" name="content"></textarea>
 
-                    <button class="button is-primary">Submit</button>
+                    <button class="button is-primary">submit</button>
 
                   </form>
                   </div>

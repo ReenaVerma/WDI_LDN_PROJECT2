@@ -18,7 +18,7 @@ function createRoute(req, res, next) {
       // store the logged in users ID into the session cookie
       req.session.userId = user._id;
 
-      req.flash('success', `Welcome back good lookin' ${user.username}`);
+      req.flash('success, animated bouce', `Welcome back good lookin' ${user.username}`);
       res.redirect('/popuplisting');
     })
     .catch(next);
