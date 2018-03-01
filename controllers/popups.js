@@ -43,8 +43,10 @@ function newRoute (req, res) {
 function createRoute(req, res, next) {
   console.log(req.body);
   Popup.create(req.body)
+
     .then(() => res.redirect('/popuplisting'))
     .catch(next);
+
 }
 
 
@@ -120,7 +122,9 @@ function commentsDeleteRoute(req, res, next) {
   Popup.findById(req.params.id)
     .then(popup => {
       // push req.body/conten for the form into the comments area
+      console.log(popup);
       const comment = popup.comments.id(req.params.commentId);
+      console.log(comment);
       comment.remove();
       return popup.save();
     })

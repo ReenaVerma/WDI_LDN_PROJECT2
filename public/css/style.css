@@ -1,14 +1,47 @@
- @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
  @import url('https//fonts.googleapis.com/css?family=Oswald');
 
 
 
+
 body {
-  background: #e4e4e4;
+  background: #fff;
   font-family: 'Oswald', sans-serif;
+
+}
+
+.new_background {
+  background-image: url(https://cdn.thenudge.com/wp-content/uploads/1970/01/pop_up_london_-1920x850.jpg);
+  background-size: cover;
+  background-repeat:  no-repeat;
+  height: 100%;
+}
+
+.register_background {
+  background-image: url(https://cdn.thenudge.com/wp-content/uploads/1970/01/pop_up_london_-1920x850.jpg);
+  background-size: cover;
+  background-repeat:  no-repeat;
+  height: 100%;
+  /* https://www.standard.co.uk/s3fs-public/styles/story_large/public/thumbnails/image/2017/03/31/10/model-market-street-food.jpg */
+}
+
+.indextitle {
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 
 
+.homepagebox {
+  border: 5px solid white;
+  padding: 20px 40px 30px 40px;
+}
+
+.opacity {
+   background: rgba(0, 0, 0, 0.5);
+   padding-left: 30px;
+   padding-right: 30px;
+
+}
 
 h1 {
   border: 0px solid white;
@@ -17,7 +50,7 @@ h1 {
 }
 
 h3 {
-  font-size: 60px;
+  font-size: 50px;
   line-height: 1;
 }
 
@@ -25,6 +58,10 @@ h4 {
   font-size: 40px;
 }
 
+
+h5 {
+  font-size: 25px;
+}
 p {
   font-size: 20px;
   color: #666;
@@ -50,7 +87,7 @@ label > input + i:hover { /* IMAGE STYLES */
 
 
 label > input:checked ~ .checkmark {
-    color: #2196F3;
+    color: orange;
 }
 
 
@@ -59,38 +96,65 @@ label > input:checked ~ .checkmark {
 
 form {
 
-  border: 1px solid red;
+  border: 0px solid red;
   border-radius: 5px;
 
 
 }
 
 
-.registration {
+.registration-form {
   border: 1px solid #ccc;
   margin: 0 auto;
   width: 400px;
-  height: 450px;
+  height: 100%;
   background-color: #fff;
   padding: 20px;
 }
 
 /* register login form */
-.credentials {
+.credentials-form {
   margin: 0 auto;
   width: 400px;
-  height: 300px;
+  height: 100%;
   background-color: #fff;
+  padding: 20px;
 }
 
+.listing-form {
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px;
+}
 
+.title_border {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
 
-.white {
+.iconsrow {
   /* background-color: white; */
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #e4e4e4;
 }
 
+.ugc_row {
+  padding-top: 50px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.map_row {
+  padding-bottom: 50px;
+}
+
+.galleryimage {
+  margin: 0 auto;
+  display: auto;
+}
 
 
 .hero.homepage {
@@ -116,7 +180,8 @@ form {
 }
 
 .subtitle {
-  font-size: 25px;
+  font-size: 35px;
+  letter-spacing: 5px;
 }
 
 .navbar {
@@ -128,11 +193,12 @@ form {
 }
 
 
-
-.purple {
-  color: #a368a4;
+.usercontent {
+  height: 400px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 5px;
 }
-
 
 
 
@@ -141,8 +207,8 @@ form {
 #map {
   margin-top: 20px;
   width: 100%;
-  height: 90%;
   background-color: grey;
+  height: 300px;
 }
 
 .fa-star {

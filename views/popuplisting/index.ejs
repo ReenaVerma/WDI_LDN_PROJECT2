@@ -1,21 +1,34 @@
 <section class="hero is-medium index hero-head animated fadeIn is-bold">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title has-text-white">latest popups in london</h1>
+      <h1 class="title has-text-white"><span class="opacity">latest popups in london</span></h1>
     </div>
   </div>
 </section>
 
 <main class="container">
-  <h2 class="is-size-2 is-black">Latest Popups</h2>
 
-  <select name="type">
-    <% types.forEach(type => { %>
-      <option<% if(type === selectedType) { %> selected <% } %>><%= type %></option>
-    <% }) %>
-  </select>
-  <button>Go</button>
-</form>
+  <div class="columns has-text-centered">
+    <div class="column">
+      <h2 class="subtitle indextitle">The number one social networking site for London's popups!  Sign up to share events, upload photos and review!</h2>
+  </div>
+</div>
+
+
+<div class="columns has-text-centered">
+  <div class="column">
+    <form>
+      <div class="select is-blue is-rounded is-large">
+      <select name="type">
+        <% types.forEach(type => { %>
+          <option<% if(type === selectedType) { %> selected <% } %>><%= type %></option>
+        <% }) %>
+      </select>
+      <button>Go</button>
+    </div>
+    </form>
+  </div>
+</div>
 
   <div class="columns is-multiline">
 

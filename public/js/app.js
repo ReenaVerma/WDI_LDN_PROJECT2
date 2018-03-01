@@ -65,7 +65,7 @@ $(() => {
     rating++;
     // averageCount = rating;
     console.log('incremented');
-    reviewsCount.innerHTML = rating + ' ratings!';
+    reviewsCount.innerHTML = rating + ' stars!';
     // console.log(averageCount);
     // total value clicked divide by rating
     // console.log(values);

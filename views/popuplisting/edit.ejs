@@ -16,11 +16,11 @@
     <div class="field">
       <label class="label">Date:</label>
       <div class="control">
-        <input class="input" name="date" type="text" placeholder="date" required minlength="2" value="<%= popup.date %>">
+        <input class="input" name="date" type="date" placeholder="date" required value="<%= popup.date %>">
       </div>
     </div>
     <div class="field">
-      <label class="label">Describe your listing in two words!</label>
+      <label class="label">Quirk factor...</label>
       <div class="control">
         <input class="input" name="twoWords" type="text" required minlength="2" value="<%= popup.twoWords %>">
       </div>
@@ -30,13 +30,29 @@
       <div class="control">
         <div class="select">
           <select name="type">
-            <option value="Food and drink">Food and drink</option>
+            <option value="Food and drink">Food & Drink</option>
             <option value="Art">Art</option>
             <option value="Music">Music</option>
           </select>
         </div>
       </div>
     </div>
+
+
+    <div class="field">
+      <label class="label">Image upload</label>
+      <div class="control">
+        <%# <input class="input is-rounded" name="image" type="text" placeholder="Improve your listings page with an image!"  pattern="https?://.+"> %>
+        <input class="input" id='imageUpload' name="image" placeholder="Improve your listings page with an image!" required type="hidden" />
+        <img id="imgPreview" src="" height="200" width="200">
+        <a class="button is-large has-text-centered is-primary" id="upload">
+          <span class="icon is-medium"><i class="fab fa-github"></i></span>
+          <span>Upload your photos</span>
+        </a>
+      </div>
+    </div>
+
+
 
     <div class="field" id="locationField">
       <input type="hidden" name="lat">
@@ -52,7 +68,7 @@
     <div class="field">
       <label class="label">A short blurb about the event:</label>
       <div class="control">
-        <textarea class="textarea" name="description" placeholder="(380 chars max)" maxlength="380" value=""><%= popup.description %></textarea>
+        <textarea class="textarea" name="description" placeholder="(500 chars max)" maxlength="500" value=""><%= popup.description %></textarea>
       </div>
     </div>
     <div class="control">

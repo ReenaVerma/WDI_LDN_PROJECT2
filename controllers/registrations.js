@@ -8,7 +8,7 @@ function newRoute(req, res) {
   res.render('registrations/new');
 }
 
-// SEND USER TO MUSIC PAGE ONCE REGISTERED
+// SEND USER TO POPUP PAGE ONCE REGISTERED
 function createRoute(req, res, next) {
   console.log(req.body);
   User.create(req.body)

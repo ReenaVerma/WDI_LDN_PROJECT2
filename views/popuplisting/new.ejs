@@ -9,43 +9,44 @@
 
 <div class="container">
   <%# sending POST/Create request to the page /cheeses %>
-  <form method="POST" action="/popuplisting">
+  <form method="POST" action="/popuplisting" class="listing-form">
     <div class="field">
-      <label class="label">Pop-Up Name:</label>
+      <label class="label is-medium">Pop-Up Name:</label>
       <div class="control has-icons-left">
-        <input class="input is-rounded" name="title" type="text" placeholder="Name" required minlength="2">
+        <input class="input is-rounded is-medium" name="title" type="text" placeholder="Name" required minlength="2">
         <span class="icon is-small is-left">
           <i class="fas fa-user"></i>
         </span>
       </div>
     </div>
     <div class="control">
-      <label class="label">Date:</label>
+      <label class="label is-medium">Date:</label>
       <div class="control">
-        <input class="input is-rounded" name="date" type="date" placeholder="date" required minlength="2">
+        <input class="input is-rounded is-medium" name="date" type="date" placeholder="date" required>
       </div>
     </div>
     <div class="field">
-      <label class="label">Quirk factor:</label>
+      <label class="label is-medium">Quirk factor:</label>
       <div class="control">
-        <input class="input is-rounded" name="twoWords" type="text" placeholder="Two random words to describe your event..." required minlength="2">
+        <input class="input is-rounded is-medium" name="twoWords" type="text" placeholder="A short few words, to summmarise your listing.." required minlength="2">
       </div>
     </div>
     <div class="field">
-      <label class="label">Event type</label>
+      <label class="label is-medium">Event type</label>
       <div class="control">
         <%# <input class="input" name="where" type="text" placeholder="EG... Peckham" required minlength="2"> %>
         <div class="select">
           <select name="type">
-            <option value="Food and drink">Food and drink</option>
+            <option value="Food and drink">Food & Drink</option>
             <option value="Art">Art</option>
             <option value="Music">Music</option>
           </select>
         </div>
       </div>
     </div>
+
     <div class="field">
-      <label class="label">Image upload</label>
+      <label class="label is-medium">Image upload</label>
       <div class="control">
         <%# <input class="input is-rounded" name="image" type="text" placeholder="Improve your listings page with an image!"  pattern="https?://.+"> %>
         <input class="input" id='imageUpload' name="image" placeholder="Improve your listings page with an image!" required type="hidden" />
@@ -60,23 +61,18 @@
     <div class="field" id="locationField">
       <input type="hidden" name="lat" />
       <input type="hidden" name="lng" />
-      <label class="label">Address:</label>
+      <label class="label is-medium">Address:</label>
       <div class="control">
         <input id="autocomplete" name="loc" class="input is-rounded" type="text" placeholder="" required>
       </div>
     </div>
 
-    <%# <div id="locationField" class="field">
-      <input type="hidden" name="lat" />
-      <input type="hidden" name="lng" />
-      <label class="label" name="address" type="text">What's the address?:</label>
-      <input id="autocomplete" placeholder="Enter your address" type="text" />
-    </div> %>
+
 
     <div class="field">
-      <label class="label">A short blurb about the event:</label>
+      <label class="label is-medium">A short blurb about the event:</label>
       <div class="control">
-        <textarea class="textarea" name="description" placeholder="(380 chars max)" maxlength="380"></textarea>
+        <textarea class="textarea" name="description" placeholder="(500 chars max)" maxlength="500"></textarea>
       </div>
     </div>
     <div class="control">

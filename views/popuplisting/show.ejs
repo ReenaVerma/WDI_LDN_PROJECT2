@@ -15,8 +15,8 @@ function initialize(){
       title:"Fast marker"
      });
 }
-
 google.maps.event.addDomListener(window,'load', initialize);
+
 </script>
 
 
@@ -24,7 +24,7 @@ google.maps.event.addDomListener(window,'load', initialize);
 <section class="hero is-medium index hero-head animated fadeIn is-bold">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title has-text-white"><%= popup.title %></h1>
+      <h1 class="title has-text-white"><span class="opacity"><%= popup.title %></span></h1>
     </div>
   </div>
 </section>
@@ -35,25 +35,80 @@ google.maps.event.addDomListener(window,'load', initialize);
 <div class="container">
 
 
-  <div class="columns has-text-centered white">
-    <div class="column"><i class="fas fa-calendar-alt fa-3x"></i><h4>date</h4><%= popup.date %></div>
-    <div class="column"><i class="fas fa-pound-sign fa-3x"></i><h4>cost</h4><%= popup.cost %></div>
-    <div class="column"><i class="fas fa-glass-martini fa-3x"></i><h4>type</h4><%= popup.type %></div>
-    <div class="column"><i class="fas fa-map-marker fa-3x"></i><h4>address</h4><span id="address"><%= popup.loc %></span></div>
+  <div class="columns has-text-centered iconsrow">
+    <div class="column">
+      <i class="fas fa-calendar-alt fa-3x has-text-grey-light"></i>
+      <h5 class="has-text-grey-light">date</h5>
+      <p class="has-text-primary"><%= popup.date %></p>
+    </div>
+
+    <div class="column">
+      <i class="fas fa-pound-sign fa-3x has-text-grey-light"></i>
+      <i class="fas fa-pound-sign fa-3x has-text-grey-light"></i>
+      <i class="fas fa-pound-sign fa-3x has-text-grey-light"></i>
+      <h5 class="has-text-grey-light">cost</h5><p class="has-text-primary"><%= popup.cost %></p></div>
+
+    <div class="column">
+      <i class="fas fa-glass-martini fa-3x has-text-grey-light"></i>
+      <h5 class="has-text-grey-light">type</h5>
+      <p class="has-text-primary"><%= popup.type %></p>
+    </div>
+
+    <div class="column">
+      <i class="fas fa-map-marker fa-3x has-text-grey-light"></i>
+      <h5 class="has-text-grey-light">address<span id="address"></h5>
+      <p class="has-text-primary"><%= popup.loc %></p>
+    </span></div>
   </div>
 
 
+<%# EVENT SUBTITLE %>
 
-
-    <%# INTRO AND GOOGLE MAPS ROW %>
-    <div class="columns">
+  <div class="columns">
+    <div class="column has-text-centered title_border ">
+          <h2 class="subtitle is-centered">Event Listing:</h2>
+        </div>
+  </div>
+    <%# INTRO AND NEW LISTING IMAGE %>
+    <div class="columns ugc_row">
       <div class="column">
         <h3>"<%= popup.twoWords %>"</h3>
-        <h4><em>added by user abc</em></h4>
-        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><p id="reviewsCount">12 reviews</p>
+        <h4><em>added by user <span class="has-text-primary">ABC</span>: <%= popup.username %></em></h4>
+
         <p><%= popup.description %></p>
+
+
+        <%# EDIT AND DELETE BUTTONS %>
+        <br />
+        <% if(locals.isAuthenticated) { %>
+          <div class="columns is-gapless is-0 is-multiline is-half">
+              <div class="column is-one-quarter">
+                <a href="/popuplisting/<%= popup._id %>/edit" class="button is-black is-outlined is-pulled-left">edit your listing...</a>
+              </div>
+
+              <div class="column is-one-quarter">
+                <form method="POST" action="/popuplisting/<%= popup._id %>">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="button is-danger is-outlined">event over? delete it.</button>
+                </form>
+              </div>
+          </div>
+        <% } %>
+
       </div>
 
+      <div class="column">
+        <img src="<%= popup.image %>" />
+      </div>
+    </div>
+
+
+    <% if(locals.isAuthenticated !== true) { %>
+        <h5 class="has-text-centered">Login to leave a review!</h5>
+    <% } %>
+
+
+    <div class="columns map_row">
       <div class="column">
         <div id="map"></div>
       </div>
@@ -61,46 +116,44 @@ google.maps.event.addDomListener(window,'load', initialize);
 
 
 
-    <% if(locals.isAuthenticated) { %>
 
-      <div class="columns is-gapless is-0 is-multiline">
-          <div class="column">
-            <a href="/popuplisting/<%= popup._id %>/edit" class="button is-primary is-pulled-left">Edit Pop-Up</a>
-          </div>
-
-          <div class="column">
-            <form method="POST" action="/popuplisting/<%= popup._id %>">
-              <input type="hidden" name="_method" value="DELETE">
-              <button class="button is-danger">Delete</button>
-            </form>
-          </div>
-      </div>
-
-    <% } %>
-
-
-      <%# RANDOM IMAGE INSERT %>
-        <div class="columns">
-          <div class="column has-text-centered">
-            <img src="<%= popup.image %>" alt="<%= popup.image %>">
-          </div>
-        </div>
 
 
         <%# LOGGED IN FUNCTION - UPLOAD AN IMAGE %>
+
         <% if(locals.isAuthenticated) { %>
         <div class="columns">
-          <div class="column">
+          <div class="column has-text-centered title_border">
+                <h2 class="subtitle is-centered">Upload an Image</h2>
+            </div>
+        </div>
+
+
+        <div class="columns">
+          <div class="column has-text-centered galleryimage">
+            <% if(popup.galleryImage[0]){ %>
+              <img src="<%= popup.galleryImage[0].galleryImage %>" />
+            <% } %>
+          </div>
+        </div>
+        <% } %>
+
+
+
+
+        <% if(locals.isAuthenticated) { %>
+        <div class="columns">
+          <div class="column has-text-centered">
 
           <form method="POST" action="/popuplisting/<%= popup._id %>/gallery">
-            <label class="label">Image</label>
+            <label class="label"><p>Upload an image of your recommended event:</p></label>
             <div>
               <input id='imageUpload' type="hidden" name="galleryImage" required />
-                <a class="button is-large has-text-centered is-primary" id="upload">
-                  <span class="icon is-medium"><i class="fab fa-github"></i></span>
+                <a class="button is-large has-text-centered is-primary is-outlined" id="upload">
+                  <span class="icon is-medium"><i class="fas fa-camera-retro"></i></span>
                   <span>Upload your photos</span>
                 </a>
-              <button class="button is-primary">Submit</button>
+              <br /><button class="button is-primary">Submit</button>
             </div>
           </form>
           </div>
@@ -109,24 +162,18 @@ google.maps.event.addDomListener(window,'load', initialize);
         <% } %>
 
 
-        <div class="columns">
-          <div class="column">
-            <% if(popup.galleryImage[0]){ %>
-              <img src="<%= popup.galleryImage[0].galleryImage %>" />
-            <% } %>
-          </div>
-        </div>
 
 
         <%# ROW 4 = User Comments %>
 
-
+    <% if(locals.isAuthenticated) { %>
       <div class="columns">
         <div class="column">
 
-        <% if(locals.isAuthenticated) { %>
 
-            <div class="columns" style="border: 1px solid green">
+          <h4>Member reviews:</h4>
+
+            <div class="columns">
               <div class="column">
 
                <hr />
@@ -138,9 +185,9 @@ google.maps.event.addDomListener(window,'load', initialize);
                   <div class="box">
 
                       <% if (comment.isOwnedBy(locals.currentUser)) { %>
-                      <form class="delete" method="POST" action="/popuplisting/<%= popup._id %>/comments/<%= popup._id %>">
+                      <form class="delete" method="POST" action="/popuplisting/<%= popup._id %>/comments/<%= comment._id %>">
                         <input type="hidden" name="_method" value="DELETE">
-                        <button class="delete">x</button>
+                        <button class="delete is-right">x</button>
                       </form>
                       <% } %>
 
@@ -148,18 +195,17 @@ google.maps.event.addDomListener(window,'load', initialize);
 
                         <div class="media-left">
                           <figure class="image is-64x64">
-                            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                            <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/glossy-black-icons-symbols-shapes/018726-glossy-black-icon-symbols-shapes-smiley-happy2.png" alt="Image">
                           </figure>
                         </div>
 
                         <div class="media-content">
                           <div class="content">
-                              <p><%= comment.rating %> Stars!</p>
-                              <p><%= comment.content %></p>
-
-                              <% if(comment.user) { %>
-                                <strong><%= comment.user.username %></strong>
-                              <% } %>
+                          <% if(comment.user) { %>
+                            <strong><p>Posted by member: <%= comment.user.username %></p></strong>
+                          <% } %>
+                              <p>Rated <%= comment.rating %>/5 stars!</p>
+                              <p style="border-top: 1px solid #e4e4e4;"><%= comment.content %></p>
                           </div>
                         </div>
 
@@ -170,13 +216,16 @@ google.maps.event.addDomListener(window,'load', initialize);
                   </ul>
                 </div>
                 </div>
-              <% } %>
               </div>
               </div>
+            <% } %>
 
-              <div class="columns" style="border: 1px solid green">
+              <div class="columns">
                   <div class="column">
+
+
                   <% if(locals.isAuthenticated) { %>
+                  <h5 id="reviewsCount"> Click the stars to rate this event!  And leave a comment!</h5>
                   <form method="POST" action="/popuplisting/<%= popup._id %>/comments">
 
 

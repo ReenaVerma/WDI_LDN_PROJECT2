@@ -1,7 +1,8 @@
-<section class="hero is-medium register hero-head animated fadeIn is-bold">
+<main class="new_background">
+<section class="hero is-small hero-head animated fadeIn is-bold">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title has-text-white">log into your account</h1>
+      <h1 class="title has-text-white">login</h1>
     </div>
   </div>
 </section>
@@ -9,11 +10,12 @@
 <div class="container animated fadeIn">
   <%# <h1 class="is-size-1 purple">Log in</h1> %>
 
-  <form method="POST" action="/login" class="credentials">
+  <form method="POST" action="/login" class="credentials-form">
+    <div class="has-text-centered"><i class="fas fa-users fa-3x"></i></div>
     <div class="field">
-      <label class="label" for="email">Email</label>
+      <label class="label is-medium" for="email">Email</label>
         <div class="control has-icons-left">
-      <input class="input" type="text" name="email" id="email">
+      <input class="input is-medium" type="text" name="email" id="email">
       <span class="icon is-small is-left">
         <i class="fas fa-envelope"></i>
       </span>
@@ -21,9 +23,9 @@
     </div>
 
     <div class="field">
-      <label class="label" for="password">Password</label>
+      <label class="label is-medium" for="password">Password</label>
         <div class="control has-icons-left">
-      <input class="input" type="password" name="password" id="password">
+      <input class="input is-medium" type="password" name="password" id="password">
       <span class="icon is-small is-left">
         <i class="fas fa-key"></i>
       </span>
@@ -32,3 +34,4 @@
     <button class="button is-primary">Login</button>
   </form>
 </div>
+</main>

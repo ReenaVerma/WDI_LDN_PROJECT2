@@ -26,7 +26,7 @@ const schema = new mongoose.Schema({
   image: { type: String },
   title: { type: String, minlength: 2, required: true },
   cost: { type: String },
-  description: { type: String, maxlength: 380, required: true },
+  description: { type: String, maxlength: 500, required: true },
   date: { type: Date, minlength: 2, required: true },
   twoWords: { type: String, minlength: 2, required: true },
   type: { type: String, minlength: 2, required: true },
@@ -36,6 +36,8 @@ const schema = new mongoose.Schema({
   comments: [ commentSchema ],
   galleryImage: [ gallerySchema ]
 });
+
+
 
 
 // schema
