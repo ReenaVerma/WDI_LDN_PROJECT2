@@ -6,7 +6,7 @@ let popUpData = require('./data/popups');
 const User = require('../models/user');
 
 // connect to this database
-mongoose.connect('mongodb://localhost/music-database', (err, db) => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database', (err, db) => {
   // clean the database first
   db.dropDatabase();
 
