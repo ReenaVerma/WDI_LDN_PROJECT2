@@ -34,8 +34,10 @@ body {
 
 
 .homepagebox {
-  border: 5px solid white;
+  border: 3px solid white;
   padding: 20px 40px 30px 40px;
+  background: rgba(0, 0, 0, 0.5);
+
 }
 
 .opacity {
@@ -59,6 +61,7 @@ h3 {
 
 h4 {
   font-size: 40px;
+  line-height: 1;
 }
 
 
@@ -70,6 +73,7 @@ p {
   color: #666;
   padding: 0px 0 0px 0;
 }
+
 
 
 label > input{ /* HIDE RADIO */
@@ -205,7 +209,9 @@ form {
 }
 
 
-
+.homepagebutton {
+  margin-top: 50px;
+}
 
 
 #map {

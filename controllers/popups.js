@@ -135,7 +135,7 @@ function commentsDeleteRoute(req, res, next) {
 
 
 
-// CREATE FUNCTION FOR COMMENT
+// CREATE FUNCTION FOR Gallery
 function galleryCreateRoute(req, res, next) {
   console.log('req.body:', req.body);
 

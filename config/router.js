@@ -10,6 +10,7 @@ router.get('/', (req, res) => res.render('pages/home'));
 
 // NEW RESTFUL
 router.get('/popuplisting/new', secureRoute, popups.new);
+// renders a form
 
 // INDEX AND CREATE RESTFUL
 router.route('/popuplisting')
