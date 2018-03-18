@@ -105,7 +105,7 @@ google.maps.event.addDomListener(window,'load', initialize);
 
 
     <% if(locals.isAuthenticated !== true) { %>
-        <h5 class="has-text-centered">Login to leave a review!</h5>
+        <h5 class="has-text-centered"><a href="/login">Login to leave a review!</a></h5>
     <% } %>
 
 
@@ -193,7 +193,7 @@ google.maps.event.addDomListener(window,'load', initialize);
 
                         <div class="media-left">
                           <figure class="image is-64x64">
-                            <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/glossy-black-icons-symbols-shapes/018726-glossy-black-icon-symbols-shapes-smiley-happy2.png" alt="Image">
+                            <i class="far fa-smile fa-3x"></i>
                           </figure>
                         </div>
 
@@ -224,39 +224,22 @@ google.maps.event.addDomListener(window,'load', initialize);
 
                   <% if(locals.isAuthenticated) { %>
 
-                  <h5> Click the stars to rate this event!  And leave a comment!</h5>
+                  <h5> Click the stars to rate this event (1-5)!  And leave a comment!</h5>
                   <form method="POST" action="/popuplisting/<%= popup._id %>/comments">
 
 
-                    <label class = "full rating" for="star5" title="Awesome - 5 stars">
-                    <input type="radio" id="star5" name="rating" value="5" />
-                    <i class="fa fa-star checkmark"></i>
-                    </label>
-
-                    <label class = "full rating" for="star4" title="Pretty good - 4 stars">
-                    <input type="radio" id="star4" name="rating" value="4" />
-                    <i class="fa fa-star checkmark"></i>
-                    </label>
-
-
-                    <label class = "full" for="star3" title="Meh - 3 stars">
-                    <input type="radio" id="star3" name="rating" value="3" />
-                    <i class="fa fa-star checkmark"></i>
-                    </label>
-
-                    <label class = "full" for="star2" title="Kinda bad - 2 stars">
-                    <input type="radio" id="star2" name="rating" value="2" />
-                    <i class="fa fa-star checkmark rating"></i>
-                    </label>
-
-                    <label class = "full" for="star1" title="Sucks big time - 1 star">
-                    <input type="radio" id="star1" name="rating" value="1" />
-                    <i class="fa fa-star checkmark rating"></i>
-                    </label>
+                  <fieldset class="rating">
+                
+                      <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                      <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                      <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                      <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                      <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                  </fieldset>
 
 
                     <textarea class="textarea" name="content"></textarea>
-
+                    <br />
                     <button id="reviewButton" class="button is-primary">submit</button>
 
                   </form>
