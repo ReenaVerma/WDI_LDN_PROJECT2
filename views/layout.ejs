@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pop-Up London - Your listings around town</title>
-
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
@@ -13,21 +12,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js" charset="utf-8"></script>
     <script src="/js/app.js" charset="utf-8"></script>
-
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C7HRroI6BaALKHa6EHMc_BDYLIB5kUA"></script>
     <script src="https://static.filestackapi.com/v3/filestack.js"></script>
-
-
-
   </head>
+
   <body>
     <%- include ./partials/_navbar %>
-
+    
     <% for (const type in messages) { %>
       <div class="notification is-<%= type %>"><%= messages[type] %></div>
     <% } %>
-
 
     <%- body -%>
   </body>

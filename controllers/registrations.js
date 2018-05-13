@@ -1,7 +1,5 @@
 // PULL THROUGH LIFE CYCLE HOOKS FROM MODELS/USER
 const User = require('../models/user');
-// create a user object in database
-
 
 // RENDER THE REGISTRATION PAGE/FORM
 function newRoute(req, res) {
@@ -14,7 +12,7 @@ function createRoute(req, res, next) {
   User.create(req.body)
     .then((user) => {
       console.log(user);
-      res.redirect('/popuplisting');
+      res.redirect('/login');
     })
     .catch(next);
 }

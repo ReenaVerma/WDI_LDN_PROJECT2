@@ -24,7 +24,6 @@ commentSchema
 
 const gallerySchema = new mongoose.Schema({
   galleryImage: { type: String }
-  // user: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
 commentSchema.methods.isOwnedBy = function(user) {

@@ -10,11 +10,6 @@ const schema = new mongoose.Schema({
   password: { type: String, required: true }
 });
 
-// schema.virtual('fullname')
-//   .get(function()
-//   return `${this.firstname} ${this.lastname}`;
-// });
-
 // FIRST
 // Setup password confirmation vitual, so password confirmation is not stored in the database.
 // Password confirmation is stored in mongoose virtual

@@ -3,16 +3,8 @@ const Popup = require('../models/popup');
 const Promise = require('bluebird');
 
 
-// INDEX RESTUL
-// function indexRoute(req, res) {
-//   // use models/song to get data from database
-//   Popup.find()
-//     // pass data into views/popuplisting/index
-//     .then(popup => res.render('popuplisting/index', { popup: popup }));
-// }
-
+// FINDING THE POPUPS AND DISPLAYING THEM ON THE INDEX ROUTE
 function indexRoute(req, res) {
-
   Promise.props({
     allPopups: Popup.find().exec(),
     popups: Popup.find(req.query).exec()
@@ -26,31 +18,23 @@ function indexRoute(req, res) {
         selectedType: req.query.type
       });
     });
-
-  // console.log(req.query); //this will display anything that was in query string as an object. eg, /cheeses?origin=france will display {origin=france}
-  // Cheese.find(req.query)
-  //   .then(cheeses => res.render('cheeses/index', { cheeses }));
-  // Popup.find()
-  //   // pass data into views/popuplisting/index
-  //   .then(popup => res.render('popuplisting/index', { popup: popup }));
 }
 
-// NEW RESTFUL
+// NEW ROUTE
+//REQUEST, RESONSE
 function newRoute (req, res) {
   res.render('popuplisting/new');
 }
 
-// CREATE RESTFUL
+// CREATE ROUTE
 function createRoute(req, res, next) {
   req.body.user = req.currentUser;
   Popup.create(req.body)
     .then(() => res.redirect('/popuplisting'))
     .catch(next);
-
 }
 
-
-// SHOW RESTFUL
+// SHOW ROUTE
 function showRoute(req, res, next) {
   Popup.findById(req.params.id)
     .populate('user comments.user')
@@ -63,20 +47,20 @@ function showRoute(req, res, next) {
     .catch(next);
 }
 
-// EDIT RESTFUL
+// EDIT ROUTE
 // FOR PREPOPULATION OCCURS HERE
 function editRoute(req, res) {
   Popup.findById(req.params.id)
     .then(popup => res.render('popuplisting/edit', { popup }));
 }
 
-// UPDATE RESTFUL
+// UPDATE ROUTE
 // have to get the data from the database.
 // update the record and apply data
 // save this change
 function updateRoute(req, res) {
   Popup.findById(req.params.id)
-    //assign req.body to the song
+    //assign req.body to the popup
     .then(popup => Object.assign(popup, req.body))
     // save
     .then(popup => popup.save())
@@ -98,7 +82,6 @@ function commentsCreateRoute(req, res, next) {
   req.body.user = req.currentUser;
   //set the currentuser as the owner of the post created
   console.log(req.body);
-
   // find the popup by ID
   Popup.findById(req.params.id)
     .then(popup => {
@@ -106,18 +89,13 @@ function commentsCreateRoute(req, res, next) {
       popup.comments.push(req.body);
       req.flash('success', 'Comment added!');
       return popup.save();
-
     })
     .then(popup => {
       console.log(popup);
       res.redirect(`/popuplisting/${popup._id}`);
-
     })
     .catch(next); //catch any errors
 }
-
-
-
 
 function commentsDeleteRoute(req, res, next) {
   Popup.findById(req.params.id)
@@ -132,8 +110,6 @@ function commentsDeleteRoute(req, res, next) {
     .then(popup => res.redirect(`/popuplisting/${popup._id}`))
     .catch(next);  //any problems send to error handler
 }
-
-
 
 // CREATE FUNCTION FOR Gallery
 function galleryCreateRoute(req, res, next) {
@@ -156,8 +132,6 @@ function galleryCreateRoute(req, res, next) {
     .catch(next); //catch any errors
 }
 
-
-
 module.exports = {
   index: indexRoute,
   new: newRoute,
@@ -169,6 +143,4 @@ module.exports = {
   commentsCreate: commentsCreateRoute,
   commentsDelete: commentsDeleteRoute,
   galleryCreate: galleryCreateRoute
-
-  // show: showRoute
 };

@@ -17,13 +17,11 @@ function createRoute(req, res, next) {
       // now cookies is setup, write this
       // store the logged in users ID into the session cookie
       req.session.userId = user._id;
-
       req.flash('success, animated bouce', `Welcome back good lookin' ${user.username}`);
       res.redirect('/popuplisting');
     })
     .catch(next);
 }
-
 
 // LOGOUT FUNCTION
 // Regenerates session cookie

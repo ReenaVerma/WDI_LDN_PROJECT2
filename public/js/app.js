@@ -58,10 +58,6 @@ $(() => {
 });
 
 
-
-
-
-
 //GOOGLE LOCATION AUTOCOMPLETE
 
 var placeSearch, autocomplete, geocoder;
