@@ -15,6 +15,7 @@ const userAuth = require('./lib/userAuth');
 // "bcrypt": "^1.0.3",
 
 
+
 // CALL EXPRESS & SERVER
 // THIS IS WHERE WE ARE CREATING OUR APP
 const app = express();
@@ -22,14 +23,10 @@ const PORT = process.env.PORT || 8000; //javascript users tend to use this port.
 
 // CONNECT TO THIS DATABASE
 //local host is 127.0.0.1.  basically using your local comupter server
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 mongoose.set('useCreateIndex', true);
 console.log("process.env.MONGODB_URI", process.env.MONGODB_URI);
 // add in the first part after you've run heroku
-
-// const db = mongoose.db();
-// const dbName = db.databaseName;
-// console.log("dbName", dbName);
 
 // SET EJS USE
 app.set('view engine', 'ejs');
