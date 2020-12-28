@@ -29,7 +29,6 @@ function deleteRoute(req, res) {
   req.session.regenerate(() => res.redirect('/'));
 }
 
-
 module.exports = {
   new: newRoute,
   create: createRoute,

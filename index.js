@@ -11,6 +11,7 @@ const flash = require('express-flash');
 const userAuth = require('./lib/userAuth');
 
 // const filestack = filestack.init(AzIEvsoFPTqyx3Hl6QM08z);
+// "mongoose": "^5.0.6"
 
 
 // CALL EXPRESS & SERVER
@@ -20,7 +21,8 @@ const PORT = process.env.PORT || 8000; //javascript users tend to use this port.
 
 // CONNECT TO THIS DATABASE
 //local host is 127.0.0.1.  basically using your local comupter server
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database', { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 // add in the first part after you've run heroku
 
 // SET EJS USE
