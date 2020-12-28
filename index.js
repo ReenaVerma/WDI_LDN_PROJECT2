@@ -27,6 +27,10 @@ mongoose.set('useCreateIndex', true);
 console.log("process.env.MONGODB_URI", process.env.MONGODB_URI);
 // add in the first part after you've run heroku
 
+// const db = mongoose.db();
+// const dbName = db.databaseName;
+// console.log("dbName", dbName);
+
 // SET EJS USE
 app.set('view engine', 'ejs');
 // look for template files

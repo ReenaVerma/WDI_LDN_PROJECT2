@@ -10,6 +10,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database'
   // clean the database first
   db.dropDatabase();
   console.log("TEST!!!");
+  console.log(db.databaseName);
   // create list of popups database
   // callback example
   
