@@ -31,3 +31,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database'
     .catch(err => console.log(err))
     .finally(() => mongoose.connection.close()); // now disconnect from database
 });
+

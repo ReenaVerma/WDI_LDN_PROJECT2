@@ -12,6 +12,7 @@ const userAuth = require('./lib/userAuth');
 
 // const filestack = filestack.init(AzIEvsoFPTqyx3Hl6QM08z);
 // "mongoose": "^5.0.6"
+// "bcrypt": "^1.0.3",
 
 
 // CALL EXPRESS & SERVER
