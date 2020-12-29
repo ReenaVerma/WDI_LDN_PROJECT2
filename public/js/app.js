@@ -25,7 +25,7 @@ $(() => {
 
 
   if (button) button.addEventListener('click', () => {
-    const client = filestack.init('AzIEvsoFPTqyx3Hl6QM08z');
+    const client = filestack.init('AdNrYxHMbT6CV8LNskM1iz');
     client.pick({
       fromSources:['local_file_system','imagesearch','facebook','instagram','webcam'],
       accept: 'image/*',
