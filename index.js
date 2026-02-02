@@ -23,7 +23,12 @@ const PORT = process.env.PORT || 8000; //javascript users tend to use this port.
 
 // CONNECT TO THIS DATABASE
 //local host is 127.0.0.1.  basically using your local comupter server
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database', { useNewUrlParser: true });
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/music-database',
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 mongoose.set('useCreateIndex', true);
 console.log("process.env.MONGODB_URI", process.env.MONGODB_URI);
 // add in the first part after you've run heroku

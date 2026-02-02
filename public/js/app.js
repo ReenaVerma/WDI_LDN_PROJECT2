@@ -36,6 +36,7 @@ $(() => {
       }
     }).then(function(result) {
       let fileUrl = result.filesUploaded[0].url;
+      console.log('result', result);
       console.log(fileUrl);
       // gallery.setAttribute('src', fileUrl);
       input.value = fileUrl;

@@ -88,6 +88,8 @@ Further enhancements I'd like to make in future include:
 <ul>
 <li>Clone or download the repo. </li>
 <li>Install dependencies with yarn install or npm install</li>
-<li>Run mongod</li>
+<li>In the root directory of your mac, run mkdir -p ~/data/db (not the project)</li>
+<li>then run mongod --dbpath ~/data/db</li>
+<li>Then in the project directory, run node db/seeds.js/li>
 <li>Launch the app with yarn start.</li>
 </ul>

@@ -11,13 +11,14 @@ function createRoute(req, res, next) {
   User.findOne({ email: req.body.email })
     .then(user => {
       if (!user || !user.validatePassword(req.body.password)) {
+        console.log("Invalid Credentials");
         return res.redirect('/login');
       }
 
       // now cookies is setup, write this
       // store the logged in users ID into the session cookie
       req.session.userId = user._id;
-      req.flash('success, animated bouce', `Welcome back good lookin' ${user.username}`);
+      // req.flash('success', `Welcome back good lookin' ${user.username}`);
       res.redirect('/popuplisting');
     })
     .catch(next);

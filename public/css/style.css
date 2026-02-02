@@ -86,7 +86,6 @@ body {
   background-size: cover;
   background-repeat:  no-repeat;
   height: 100%;
-  /* https://www.standard.co.uk/s3fs-public/styles/story_large/public/thumbnails/image/2017/03/31/10/model-market-street-food.jpg */
 }
 
 .indextitle {
@@ -227,15 +226,13 @@ form {
 
 
 .hero.homepage {
-  background-image: url(https://www.standard.co.uk/s3fs-public/styles/story_large/public/thumbnails/image/2017/03/31/10/model-market-street-food.jpg);
+  background-image: url(../images/hero.png);
   background-size: cover;
-  /* height: 650px; */
 }
 
 .hero.index {
-  background-image: url(https://nomad.video/wp-content/uploads/2016/09/food-table.gif);
+  background-image: url(../images/pub.png);
   background-size: cover;
-  /* https://nomad.video/wp-content/uploads/2016/09/food-table.gif */
 }
 
 .hero.register {
