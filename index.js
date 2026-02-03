@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 8000; //javascript users tend to use this port.
 // CONNECT TO THIS DATABASE
 //local host is 127.0.0.1.  basically using your local comupter server
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb+srv://reenaverma81_db_user:JlMQbmwknqigrHP2@cluster0.d94m3y4.mongodb.net/?appName=Cluster0',
+  process.env.MONGODB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
 .then(() => console.log('MongoDB connected'))
