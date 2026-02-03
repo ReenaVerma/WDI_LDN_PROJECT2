@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 8000; //javascript users tend to use this port.
 // CONNECT TO THIS DATABASE
 //local host is 127.0.0.1.  basically using your local comupter server
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/music-database',
+  process.env.MONGODB_URI || 'mongodb+srv://reenaverma81_db_user:JlMQbmwknqigrHP2@cluster0.d94m3y4.mongodb.net/?appName=Cluster0',
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
 .then(() => console.log('MongoDB connected'))
@@ -44,8 +44,8 @@ app.set('views', `${__dirname}/views`);
 app.use(expressLayouts);
 // __dirname references your entire route directory url. eg home/development/homework/myexpress
 
-// tells the requster to check the build file for js, images, css
-app.use(express.static(`${__dirname}/build`));
+// tells the requster to check the public file for js, images, css
+app.use(express.static(`${__dirname}/public`));
 
 
 // ENSURES FORM DATA IS LISTENED TO AND CAPTURED
