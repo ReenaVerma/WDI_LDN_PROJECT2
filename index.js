@@ -44,8 +44,8 @@ app.set('views', `${__dirname}/views`);
 app.use(expressLayouts);
 // __dirname references your entire route directory url. eg home/development/homework/myexpress
 
-// tells the requster to check the public file for js, images, css
-app.use(express.static(`${__dirname}/public`));
+// tells the requster to check the build file for js, images, css
+app.use(express.static(`${__dirname}/build`));
 
 
 // ENSURES FORM DATA IS LISTENED TO AND CAPTURED
