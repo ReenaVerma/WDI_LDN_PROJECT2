@@ -5,7 +5,7 @@ const Popup = require('../models/popup');
 const User = require('../models/user');
 let popUpData = require('./data/popups');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/music-database', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
